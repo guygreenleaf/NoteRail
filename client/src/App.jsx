@@ -1,22 +1,34 @@
 import React from "react";
 import { useState } from "react";
 import "./App.scss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { MDBBox } from 'mdbreact';
+import Navbar from './Components/layout/Navbar';
+import Landing from './Components/layout/Landing'
 
 function App() {
   return (
-    <div
-      className="App"
+    <div className=""
       style={{
-        backgroundImage: 'url("https://i.imgur.com/IGrfDOy.jpg")',
-        backgroundColor: "#9DA39F",
-        // backgroundImage: 'url("https://i.imgur.com/bQFIFU6.jpg")',
         backgroundRepeat: "no-repeat",
         WebkitBackgroundSize: "100%",
         backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    > 
+        backgroundPosition: "center",        
+      }}>
     
+    <Router>
+    <div> 
+
+
+    <div style={{display: "flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>
+    <Landing/>
+    </div>
+
+
+    </div>
+    </Router>
+
     </div>
   );
 }

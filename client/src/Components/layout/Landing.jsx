@@ -14,7 +14,14 @@ import {
 } from "mdbreact";
 import FadeIn from 'react-fade-in';
 
+
 export default function Landing() {
+
+  const [inputs, setInputs] = useState({
+    email:'',
+    password:''
+  })
+
   return (
     <FadeIn transitionDuration='1100'>
     <MDBBox
@@ -35,6 +42,8 @@ export default function Landing() {
             validate
             error="wrong"
             success="right"
+            value={inputs.email}
+            onChange={(e)=>setInputs(e.target.value)}
           />
           <MDBInput
             label="Your password"
@@ -42,6 +51,8 @@ export default function Landing() {
             type="password"
             validate
             containerClass="mb-0"
+            value={inputs.password}
+            onChange={(e)=>setInputs(e.target.value)}
           />
           <p className="font-small blue-text d-flex justify-content-end pb-3">
             Forgot
@@ -52,7 +63,7 @@ export default function Landing() {
           <div className="text-center mb-3">
             <Link to="/login">
               <MDBBtn
-                type="button"
+                type="submit"
                 gradient="blue"
                 rounded
                 className="btn-block z-depth-1a"
@@ -63,12 +74,10 @@ export default function Landing() {
           </div>
         </MDBCardBody>
         <MDBModalFooter className="mx-5 pt-3 mb-1">
-          <p className="font-small grey-text d-flex justify-content-end">
+          <p className="font-small grey-text" style={{marginRight:'42px'}}>
             Not a member?
-            <Link to="/register">
-              <a href="#!" className="blue-text ml-1">
+            <Link to="/register" className="blue-text ml-1">
                 Sign Up
-              </a>
             </Link>
           </p>
         </MDBModalFooter>

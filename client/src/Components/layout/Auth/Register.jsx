@@ -94,7 +94,9 @@ export default class Register extends Component {
           <div className="col s12" style={{ paddingLeft: "2px" }}>
             <button
               style={{
-                width: "150px",
+                marginBottom:"25px",
+                width: "125px",
+                height:"45px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
                 marginTop: "1rem",
@@ -113,77 +115,5 @@ export default class Register extends Component {
     </div>
   </div>
   </FadeIn>
-    //   <FadeIn transitionDuration="1100">
-    //     <MDBBox display="flex" justifyContent="center">
-    //     <form noValidate onSubmit={this.onSubmit}>
-    //       <MDBCard>
-    //         <Link to="/">
-    //           <MDBIcon icon="angle-double-left" size="2x" />
-    //         </Link>
-    //         <MDBCardBody className="mx-3">
-
-    //         <div className="input-field col s12">
-    //           <input
-    //             id="username"
-    //             type="text"
-    //             value={this.state.username}
-    //             onChange={this.onChange}
-    //             error={errors.username}
-    //           />
-    //           <label htmlFor="username">Username</label>
-    //           </div>
-              
-    //           <div className ="input-field col s12">
-    //           <input
-    //             type="email"
-    //             error={errors.email}
-    //             value={this.state.email}
-    //             onChange={this.onChange}
-    //             id="email"
-    //           />
-    //           <label htmlFor="email">Email</label>
-    //           </div>
-
-    //           <div className ="input-field col s12">
-    //           <input
-    //             type="password"
-    //             error={errors.password}
-    //             value={this.state.password}
-    //             onChange={this.onChange}
-    //             id="password"
-    //           />
-    //           <label htmlFor="password">Password</label>
-    //           </div>
-
-
-    //           <div className ="input-field col s12">
-    //           <input
-    //             type="password"
-    //             error={errors.password2}
-    //             value={this.state.password2}
-    //             onChange={this.onChange}
-    //             id="password2"
-    //           />
-    //           <label htmlFor="password">Confirm password</label>
-    //           </div>
-
-    //           <div className="text-center mb-3">
-    //             <Link to="/">
-    //               <MDBBtn
-    //                 type="submit"
-    //                 gradient="blue"
-    //                 rounded
-    //                 className="btn-block z-depth-1a"
-    //               >
-    //                 Sign up
-    //               </MDBBtn>
-    //             </Link>
-    //           </div>
-    //         </MDBCardBody>
-    //       </MDBCard>
-    //       </form>
-    //     </MDBBox>
-    //   </FadeIn>
-
   );
 }}

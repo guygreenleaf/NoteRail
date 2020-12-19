@@ -8,8 +8,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Landing from './Components/layout/Landing'
 import Register from './Components/layout/Auth/Register'
 
+import { Provider } from "react-redux";
+import store from "./store";
+
 function App() {
   return (
+    <Provider store={store}>
     <Router>
     <div className=""
       style={{
@@ -33,6 +37,7 @@ function App() {
 
     </div>
     </Router>
+    </Provider>
   );
 }
 

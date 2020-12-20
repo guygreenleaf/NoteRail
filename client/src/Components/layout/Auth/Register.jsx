@@ -1,13 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBBtn,
-  MDBIcon,
-  MDBBox,
-} from "mdbreact";
 import FadeIn from "react-fade-in";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -23,16 +15,28 @@ class Register extends Component {
       password: "",
       password2: "",
       errors: {},
+      lastErrors: null,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors,
-      });
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors,
+  //     });
+  //   }
+  // }
+
+    //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
+  static getDerivedStateFromProps(props, state) {
+    if(props.errors !== state.errors){
+      return{
+        errors: props.errors,
+        lastErrors: props.errors,
+      }
     }
-  }
+    return null;
+    }
 
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });

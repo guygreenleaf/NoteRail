@@ -1,14 +1,8 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBInput,
-  MDBBtn,
-  MDBIcon,
   MDBModalFooter,
   MDBBox,
 } from "mdbreact";
@@ -26,21 +20,46 @@ class Landing extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      lastLogin:null,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
-    }
-if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
-  }
+//   componentWillReceiveProps(nextProps) {
+//     if (nextProps.auth.isAuthenticated) {
+//       this.props.history.push("/dashboard"); // push user to dashboard when they login
+//     }
+// if (nextProps.errors) {
+//       this.setState({
+//         errors: nextProps.errors
+//       });
+//     }
+//   }
 
+
+  //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
+  static getDerivedStateFromProps(props, state) {
+    if(props.auth.isAuthenticated){
+      state.history.push("/dashboard");
+    }
+    if(props.errors !== state.errors){
+      return{
+        errors: props.errors,
+        lastErrors: props.errors,
+      }
+    }
+    return null;
+    }
+
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     this.state.someStatefulValue !==
+  //     prevState.someStatefulValue
+  //   ) {
+  //     this.props.onChange(this.state.someStatefulValue);
+  //   }
+  // }
 
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -121,43 +140,6 @@ render() {
                 </button>
               </div>
             </form>
-          {/* <MDBInput
-            label="Your email"
-            group
-            type="email"
-            validate
-            error="wrong"
-            success="right"
-            value={this.state.email}
-            onChange={this.onChange}
-          />
-          <MDBInput
-            label="Your password"
-            group
-            type="password"
-            validate
-            containerClass="mb-0"
-            value={this.state.password}
-            onChange={this.onChange}
-          />
-          <p className="font-small blue-text d-flex justify-content-end pb-3">
-            Forgot
-            <a href="#!" className="blue-text ml-1">
-              Password?
-            </a>
-          </p>
-          <div className="text-center mb-3">
-            <Link to="/login">
-              <MDBBtn
-                type="submit"
-                gradient="blue"
-                rounded
-                className="btn-block z-depth-1a"
-              >
-                Sign in
-              </MDBBtn>
-            </Link>
-          </div> */}
         </MDBCardBody>
         <MDBModalFooter className="mx-5 pt-3 mb-1">
           <p className="font-small grey-text" style={{marginRight:'30px'}}>

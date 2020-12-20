@@ -27,7 +27,7 @@ class Register extends Component {
   //   }
   // }
 
-    //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
+  //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
   static getDerivedStateFromProps(props, state) {
     if(props.errors !== state.errors){
       return{

@@ -40,7 +40,7 @@ class Landing extends Component {
   //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
   static getDerivedStateFromProps(props, state) {
     if(props.auth.isAuthenticated){
-      state.history.push("/dashboard");
+      props.history.push("/dashboard");
     }
     if(props.errors !== state.errors){
       return{

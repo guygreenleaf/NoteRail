@@ -13,6 +13,9 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.username)) {
     errors.username = "Name field is required";
   }
+  if(!Validator.isLength(data.username, { min: 4, max: 21 })){
+    errors.username = "Username must be between 4 and 21 characters."
+  }
 
 // Email checks
   if (Validator.isEmpty(data.email)) {

@@ -19,6 +19,13 @@ class Register extends Component {
     };
   }
 
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   // componentWillReceiveProps(nextProps) {
   //   if (nextProps.errors) {
   //     this.setState({
@@ -86,11 +93,11 @@ class Register extends Component {
                     id="username"
                     type="text"
                     className={classnames("", {
-                      invalid: errors.name,
+                      invalid: errors.username,
                     })}
                   />
                   <label htmlFor="name">Username</label>
-                  <span className="red-text">{errors.name}</span>
+                  <span className="red-text">{errors.username}</span>
                 </div>
                 <div className="input-field col s12">
                   <input

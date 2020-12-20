@@ -11,7 +11,7 @@ import Landing from './Components/layout/Landing'
 import Register from './Components/layout/Auth/Register'
 import PrivateRoute from "./Components/private-routes/PrivateRoute";
 import Dashboard from "./Components/layout/dashboard/Dashboard";
-
+import RegisterSuccess from "./Components/layout/Auth/RegisterSuccess"
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -53,6 +53,7 @@ function App() {
     <div style={{display: "flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>
     <Route exact path="/" component={Landing}/>
     <Route exact path="/register" component={Register}/>
+    <Route exact path="/registerSuccess" component={RegisterSuccess}/>
     <Switch>
       <PrivateRoute exact path="/dashboard" component={Dashboard}/>
     </Switch>

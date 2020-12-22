@@ -1,6 +1,4 @@
 /node_modules
-
-/config/keys/keys.js
-
-
-
+/.pnp
+.pnp.js
+/.env

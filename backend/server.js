@@ -1,37 +1,37 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const app = express();
-const passport = require("passport");
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const fileUpload = require('express-fileupload')
+const path = require('path')
 
-const users = require("./routes/api/users");
+const app = express()
+app.use(express.json())
+app.use(cors())
+app.use(cookieParser())
+app.use(fileUpload({
+    useTempFiles: true
+}))
 
-// Bodyparser middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
-app.use(bodyParser.json());
-// DB Config
-const db = require("./config/keys/keys").mongoURI;
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+//Routes
+app.use('/user', require('./routes/userRouter'))
 
 
-  // Passport middleware
-app.use(passport.initialize());
-// Passport config
-require("./config/keys/passport")(passport);
-// Routes
-app.use("/api/users", users);
+//Connect to mongoDB
+const URI =  process.env.MONGODB_URL 
+mongoose.connect(URI, {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, err => {
+    if(err) throw err;
+    console.log("Connected to MongoDB...")
+})
 
 
-const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
+    console.log('Server is running on port ', PORT)
+})

@@ -47,7 +47,7 @@ function App() {
       }}>
     
 
-    <div> 
+
 
 
     <div style={{display: "flex", justifyContent:"center", alignItems:"center", height:"100vh"}}>
@@ -57,8 +57,9 @@ function App() {
     <Switch>
       <PrivateRoute exact path="/dashboard" component={Dashboard}/>
     </Switch>
-    </div>
 
+    
+    
     </div>
 
 

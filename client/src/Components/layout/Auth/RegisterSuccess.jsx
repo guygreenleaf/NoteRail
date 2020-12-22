@@ -15,6 +15,7 @@ import {
 
 export default function RegisterSuccess() {
     return (
+
         <div>
              <FadeIn transitionDuration='1100'>
     <MDBBox
@@ -28,7 +29,7 @@ export default function RegisterSuccess() {
               <strong>You have successfully registered.</strong>
             </h3>
             <h4 className="dark-grey-text mb-5">
-                <strong>Please click here to return to the login screen and sign in with your credentials</strong>
+                <strong>Please click <a href='/'>here</a> to return to the login screen and sign in with your credentials</strong>
             </h4>
           </div>
         </MDBCardBody>

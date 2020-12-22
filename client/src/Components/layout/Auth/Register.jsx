@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../../actions/authActions";
 import classnames from "classnames";
-
+import { loginUser } from "../../../actions/authActions";
+        
 class Register extends Component {
   constructor() {
     super();
@@ -36,14 +37,14 @@ class Register extends Component {
 
   //POSSIBLE ERROR, MAY NEED TO REVISE. REFACTORED FROM ^ ACCORDING TO REACT DOC PRACTICES
   static getDerivedStateFromProps(props, state) {
-    if(props.errors !== state.errors){
-      return{
+    if (props.errors !== state.errors) {
+      return {
         errors: props.errors,
         lastErrors: props.errors,
-      }
+      };
     }
     return null;
-    }
+  }
 
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -107,8 +108,8 @@ class Register extends Component {
                     id="email"
                     type="email"
                     className={classnames("", {
-                    invalid: errors.email
-                  })}
+                      invalid: errors.email,
+                    })}
                   />
                   <label htmlFor="email">Email</label>
                   <span className="red-text">{errors.email}</span>
@@ -121,8 +122,8 @@ class Register extends Component {
                     id="password"
                     type="password"
                     className={classnames("", {
-                    invalid: errors.password
-                  })}
+                      invalid: errors.password,
+                    })}
                   />
                   <label htmlFor="password">Password</label>
                   <span className="red-text">{errors.password}</span>
@@ -135,8 +136,8 @@ class Register extends Component {
                     id="password2"
                     type="password"
                     className={classnames("", {
-                    invalid: errors.password2
-                  })}
+                      invalid: errors.password2,
+                    })}
                   />
                   <label htmlFor="password2">Confirm Password</label>
                   <span className="red-text">{errors.password2}</span>

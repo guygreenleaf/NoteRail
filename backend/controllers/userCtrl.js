@@ -1,6 +1,7 @@
-const Users = require("../models/userModel");
+const Users = require("../models/userModel")
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const sendMail = require('./sendMail')
 
 const {CLIENT_URL} = process.env
 const userCtrl = {
@@ -32,11 +33,10 @@ const userCtrl = {
 
            const activation_token = createActivationToken(newUser)
            const url = `${CLIENT_URL}/user/activate${activation_token}`
-        //    sendMail(email, url)
+           sendMail(email, url)
             
 
             res.json({msg: "Registration successful. Please check your email for a link to activate your account."})
-            res.json('big test')
         } catch (err){
             return res.status(500).json({msg: err.message})
         }

@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendMail = require('./sendMail')
 
+
 const {CLIENT_URL} = process.env
 const userCtrl = {
     register: async (req, res) => {
@@ -33,7 +34,7 @@ const userCtrl = {
 
            const activation_token = createActivationToken(newUser)
            const url = `${CLIENT_URL}/user/activate${activation_token}`
-           sendMail(email, url)
+           sendMail(email, url, "Verify your email address")
             
 
             res.json({msg: "Registration successful. Please check your email for a link to activate your account."})
@@ -97,6 +98,97 @@ const userCtrl = {
                 res.json({access_token})
             })
         } catch (error) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    forgotPassword: async (req, res) =>{
+        try {
+            const {email} = req.body
+            const user = await Users.findOne({email})
+            if(!user) return res.status(500).json({msg: "This email does not exist."})
+
+            const access_token = createAccessToken({id: user._id})
+            const url = `${CLIENT_URL}/user/reset/${access_token}`
+
+            sendMail(email, url, "Reset password")
+            res.json({msg:"Instructions to access your acount have been sent - please check your email."})
+        } catch (error) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    resetPassword: async (req, res) => {
+        try {
+            const {password} = req.body 
+            console.log(password)
+            const passwordHash = await bcrypt.hash(password, 12)
+
+            console.log(req.user)
+            await Users.findOneAndUpdate({_id: req.user.id}, {
+                password: passwordHash
+            })
+
+            res.json({msg: "Password successfully reset."})
+        } catch (error) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    getUserInfor: async(req, res) =>{
+        try {
+            const user = await Users.findById(req.user.id).select('-password')
+
+            res.json(user)
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    getUsersAllInfor: async (req, res) => {
+        try {
+            const users = await Users.find().select('-password')
+
+            res.json(users)
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    logout: async (req, res) => {
+        try {
+            res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
+            return res.json({msg: "Logout successful"})
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    updateUser: async (req, res) => {
+        try {
+            const {name, avatar} = req.body 
+            await Users.findOneAndUpdate({_id: req.user.id}, {
+                name, avatar
+            })
+
+            res.json({msg:"Update successful"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    updateUsersRole: async (req, res) => {
+        try {
+            const {role} = req.body 
+            await Users.findOneAndUpdate({_id: req.params.id}, {
+                role
+            })
+
+            res.json({msg:"Update successful"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    deleteUser: async (req, res) => {
+        try {
+            await Users.findByIdAndDelete(req.params.id)
+            
+
+            res.json({msg:"Account deleted"})
+        } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     }

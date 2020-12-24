@@ -56,8 +56,9 @@ const userCtrl = {
             const newUser = new Users({
                 name, email, password
             })
-
+          
             await newUser.save()
+
 
             res.json({msg: "Account has been activated."})
         } catch (err) {
@@ -74,14 +75,18 @@ const userCtrl = {
             if(!isMatch) return res.status(400).json({msg: "Incorrect password. Please try again."})
 
             console.log(user)
-            const refresh_token = createRefreshToken({id: user._id})
-            res.cookie('refreshtoken', refresh_token, {
-                httpOnly: true,
-                path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 //7 days
-            })
 
-            res.json({msg: "Login successful"})
+            const payload = {id: user._id, name: user.name}
+            const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            
+            // const refresh_token = createRefreshToken({id: user._id})
+            // res.cookie('refreshtoken', refresh_token, {
+            //     httpOnly: true,
+            //     path: '/user/refresh_token',
+            //     maxAge: 7*24*60*60*1000 //7 days
+            // })
+
+            res.json({msg: "Login successful", token})
         } catch (error) {
             return res.status(500).json({msg: err.message})
         }

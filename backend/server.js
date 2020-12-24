@@ -5,6 +5,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const path = require('path')
+const noteRouter = require('./routes/noteRouter')
 
 const app = express()
 app.use(express.json())
@@ -17,6 +18,7 @@ app.use(fileUpload({
 //Routes
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
+app.use('/api/notes', require('./routes/noteRouter'))
 
 //Connect to mongoDB
 const URI =  process.env.MONGODB_URL 

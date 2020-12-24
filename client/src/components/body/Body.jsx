@@ -1,10 +1,13 @@
 import React from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
+import Landing from '../Landing'
 
 function Body() {
     return (
         <div>
-            
+            <Switch>
+                <Route path="/" component={Landing} exact />
+            </Switch>
         </div>
     )
 }

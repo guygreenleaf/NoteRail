@@ -1,12 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { MDBCard, MDBCardBody, MDBModalFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 
-class Landing extends Component {
-  
-  render() {
+function Landing() {
+
     return (
+      <div style={{
+        position: 'absolute', left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)'
+    }}>
       <FadeIn transitionDuration="1100">
         <MDBBox display="flex" justifyContent="center">
           <MDBCard>
@@ -16,7 +19,7 @@ class Landing extends Component {
                   <strong>Welcome to NoteRail!</strong>
                 </h3>
               </div>
-              <form noValidate onSubmit={this.onSubmit}>
+              <form noValidate>
                 <div className="input-field col s12">
                   <input
                   />
@@ -63,8 +66,9 @@ class Landing extends Component {
           </MDBCard>
         </MDBBox>
       </FadeIn>
+      </div>
     );
   }
-}
+
 
 export default Landing;

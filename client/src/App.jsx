@@ -11,16 +11,16 @@ function App() {
   return (
 
     <Router>
-      <div className="App">
+      {/* <div className="App">
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
     }}>
-      <Landing></Landing>
-      </div>
+      <Landing></Landing> */}
+      {/* </div> */}
       <Body />
-        
-      </div>
+{/*         
+      </div> */}
     </Router>
   );
 }

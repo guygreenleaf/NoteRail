@@ -27,6 +27,37 @@ const noteCtrl = {
         } catch (err) {
             res.status(500).json({msg: err.message})
         }
+    },
+    //ADD DELETE VERIFICATION SCREEN
+    deleteNote: async(req, res) =>{
+        try {
+            await Notes.findByIdAndDelete(req.params.id)
+            res.json({msg: "Note deleted."})
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }
+    },
+    updateNote: async(req, res) =>{
+        try {
+
+            const {title, content} = req.body;
+            await Notes.findOneAndUpdate({_id: req.params.id}, {
+                title,
+                content
+            })
+            
+            res.json({msg: "Updated Note"})
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }
+    },
+    getNote: async (req, res) => {
+        try {
+            const note = await Notes.findById(req.params.id)
+            res.json(note)
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }
     }
 }
 

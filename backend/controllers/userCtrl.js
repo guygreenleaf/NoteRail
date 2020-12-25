@@ -9,7 +9,6 @@ const userCtrl = {
     register: async (req, res) => {
         try{
             const {name, email, password} = req.body
-            console.log({name, email, password})
             if(!name || !email || !password){
                 return res.status(400).json({msg: "Please fill in all fields."})
             }
@@ -20,6 +19,9 @@ const userCtrl = {
 
             const user = await Users.findOne({email})
             if(user) return res.status(400).json({msg: "This email already exists."})
+
+            const user2 = await Users.findOne({name})
+            if(user2) return res.status(400).json({msg:"This username already exists."})
 
             if(password.length < 6){
                 return res.status(400).json({msg: "Password must be more than 6 characters."})
@@ -36,7 +38,7 @@ const userCtrl = {
            const url = `${CLIENT_URL}/user/activate${activation_token}`
            sendMail(email, url, "Verify your email address")
             
-
+            console.log("Registration successful!")
             res.json({msg: "Registration successful. Please check your email for a link to activate your account."})
         } catch (err){
             return res.status(500).json({msg: err.message})

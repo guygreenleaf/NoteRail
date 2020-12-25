@@ -20,7 +20,7 @@ function Landing() {
   const [err, setErr] = useState('')
   // const { email, password, err, success } = user;
 
-  const onChangeInput = (e) => {
+  const onChangeInput = e => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
     setErr('')
@@ -36,6 +36,9 @@ function Landing() {
   //       setUser({ ...user, err: err.response.data.msg, success: "" });
   //   }
   // };
+
+
+
   return (
   
     <div

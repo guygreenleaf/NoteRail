@@ -1,29 +1,45 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import FadeIn from "react-fade-in";
+import Axios from "axios";
 
-function Register(){
+function Register() {
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
 
+  const [err, setErr] = useState("");
 
-
-//   onChange = (e) => {
-//     this.setState({ [e.target.id]: e.target.value });
-//   };
-//   onSubmit = (e) => {
-//     e.preventDefault();
-//     const newUser = {
-//       username: this.state.username,
-//       email: this.state.email,
-//       password: this.state.password,
-//       password2: this.state.password2,
-//     };
-//     this.props.registerUser(newUser, this.props.history);
-//   };
-//   render() {
-    // const { errors } = this.state;
-
-    return (
-
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+    setErr("");
+  };
+  const clearState = () => {
+    setUser({ password: "", password2: "" });
+  };
+  const registerSubmit = async (e) => {
+    e.preventDefault();
+    if (user.password !== user.password2) {
+      return setErr("Passwords do not match. Please try again");
+    } else {
+      try {
+        const res = await Axios.post("/user/register", {
+          name: user.name,
+          email: user.email,
+          password: user.password,
+        });
+        setUser({ name: "", email: "", password: "" });
+        setErr(res.data.msg);
+      } catch (err) {
+        err.response.data.msg && setErr(err.response.data.msg);
+      }
+    }
+  };
+  return (
     <div
       style={{
         position: "absolute",
@@ -53,14 +69,19 @@ function Register(){
                 <p className="grey-text text-darken-1">
                   Already have an account? <Link to="/">Log in</Link>
                 </p>
+                <h4 style={{ color: "red" }}>{err}</h4>
               </div>
-              <form noValidate /*>onSubmit={this.onSubmit}*/>
+              <form
+                noValidate
+                onSubmit={registerSubmit} /*>onSubmit={this.onSubmit}*/
+              >
                 <div className="input-field col s12">
                   <input
-                    // onChange={this.onChange}
-                    // value={this.state.username}
-                    // error={errors.username}
-                    id="username"
+                    required
+                    onChange={onChange}
+                    value={user.name}
+                    name="name"
+                    id="register-name"
                     type="text"
                     // className={classnames("", {
                     //   invalid: errors.username,
@@ -70,40 +91,46 @@ function Register(){
                 </div>
                 <div className="input-field col s12">
                   <input
-                    // onChange={this.onChange}
-                    // value={this.state.email}
+                    required
+                    onChange={onChange}
+                    value={user.email}
                     // error={errors.email}
                     id="email"
                     type="email"
-                //     className={classnames("", {
-                //     invalid: errors.email
-                //   })}
+                    name="email"
+                    //     className={classnames("", {
+                    //     invalid: errors.email
+                    //   })}
                   />
                   <label htmlFor="email">Email</label>
                 </div>
                 <div className="input-field col s12">
                   <input
-                    // onChange={this.onChange}
-                    // value={this.state.password}
+                    required
+                    onChange={onChange}
+                    value={user.password}
                     // error={errors.password}
                     id="password"
                     type="password"
-                //     className={classnames("", {
-                //     invalid: errors.password
-                //   })}
+                    name="password"
+                    //     className={classnames("", {
+                    //     invalid: errors.password
+                    //   })}
                   />
                   <label htmlFor="password">Password</label>
                 </div>
                 <div className="input-field col s12">
                   <input
-                    // onChange={this.onChange}
-                    // value={this.state.password2}
+                    required
+                    onChange={onChange}
+                    value={user.password2}
                     // error={errors.password2}
                     id="password2"
                     type="password"
-                //     className={classnames("", {
-                //     invalid: errors.password2
-                //   })}
+                    name="password2"
+                    //     className={classnames("", {
+                    //     invalid: errors.password2
+                    //   })}
                   />
                   <label htmlFor="password2">Confirm Password</label>
                 </div>
@@ -131,10 +158,9 @@ function Register(){
           </div>
         </div>
       </FadeIn>
-      </div>
-    );
-  }
-
+    </div>
+  );
+}
 
 // Register.propTypes = {
 //   registerUser: PropTypes.func.isRequired,
@@ -148,4 +174,4 @@ function Register(){
 // });
 
 // export default connect(mapStateToProps, { registerUser })(withRouter(Register));
-export default Register
+export default Register;

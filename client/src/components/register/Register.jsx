@@ -21,6 +21,8 @@ function Register() {
   const clearState = () => {
     setUser({ password: "", password2: "" });
   };
+
+  
   const registerSubmit = async (e) => {
     e.preventDefault();
     if (user.password !== user.password2) {

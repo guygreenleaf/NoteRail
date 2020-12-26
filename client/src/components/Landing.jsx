@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { MDBCard, MDBCardBody, MDBModalFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
@@ -37,7 +37,21 @@ function Landing() {
   //   }
   // };
 
+  const handleSubmit = async (e) => {
 
+    e.preventDefault();
+
+      try {
+        const res = await Axios.post("/user/login", {
+          email: user.email,
+          password: user.password,
+        });
+        setUser({email: "", password: "" });
+        setErr(res.data.msg);
+      } catch (err) {
+        err.response.data.msg && setErr(<FadeIn transitionDuration="1100">{err.response.data.msg}</FadeIn>);
+      }
+    };
 
   return (
   
@@ -57,9 +71,9 @@ function Landing() {
                 <h3 className="dark-grey-text mb-5">
                   <strong>Welcome to NoteRail!</strong>
                 </h3>
-                <h3>{err}</h3>
+                <h4 style={{color:'black'}}>{err}</h4>
               </div>
-              <form >
+              <form onSubmit = {handleSubmit} >
                 <div className="input-field col s12">
                   <input
                     type="email"

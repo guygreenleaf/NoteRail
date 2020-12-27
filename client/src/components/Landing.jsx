@@ -1,34 +1,33 @@
 import React, { Component, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { MDBCard, MDBCardBody, MDBFooter, MDBBox} from "mdbreact";
+import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Register from './register/Register'
-import ForgotPassword from './ForgotPassword'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Register from "./register/Register";
+import ForgotPassword from "./ForgotPassword";
 
 function Landing() {
- 
   const [user, setUser] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
-  const [err, setErr] = useState('')
+  const [err, setErr] = useState("");
   // const { email, password, err, success } = user;
 
-  const onChangeInput = e => {
+  const onChangeInput = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    setErr('')
+    setErr("");
   };
 
   const [modal, setModal] = useState(false);
 
-  const modalClick = e => {
+  const modalClick = (e) => {
     setModal(true);
-  }
+  };
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -42,23 +41,24 @@ function Landing() {
   // };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
-      try {
-        const res = await Axios.post("/user/login", {
-          email: user.email,
-          password: user.password,
-        });
-        setUser({email: "", password: "" });
-        setErr(res.data.msg);
-      } catch (err) {
-        err.response.data.msg && setErr(<FadeIn transitionDuration="1100">{err.response.data.msg}</FadeIn>);
-      }
-    };
+    try {
+      const res = await Axios.post("/user/login", {
+        email: user.email,
+        password: user.password,
+      });
+      setUser({ email: "", password: "" });
+      setErr(res.data.msg);
+    } catch (err) {
+      err.response.data.msg &&
+        setErr(
+          <FadeIn transitionDuration="1100">{err.response.data.msg}</FadeIn>
+        );
+    }
+  };
 
   return (
-  
     <div
       style={{
         position: "absolute",
@@ -75,9 +75,9 @@ function Landing() {
                 <h3 className="dark-grey-text mb-5">
                   <strong>Welcome to NoteRail!</strong>
                 </h3>
-                <h4 style={{color:'black'}}>{err}</h4>
+                <h4 style={{ color: "black" }}>{err}</h4>
               </div>
-              <form onSubmit = {handleSubmit} >
+              <form onSubmit={handleSubmit}>
                 <div className="input-field col s12">
                   <input
                     type="email"
@@ -122,7 +122,7 @@ function Landing() {
                   <div>
                     <p className="font-small grey-text">
                       Forgot your password?
-                      <Link to="/forgotPassword" className="font-small">
+                      <Link to="/forgotPassword" className="font-small ml-1">
                         Click Here
                       </Link>
                     </p>
@@ -139,14 +139,12 @@ function Landing() {
                 <Link to="/register" className="blue-text ml-1">
                   Sign Up
                 </Link>
-
               </p>
             </MDBFooter>
           </MDBCard>
         </MDBBox>
       </FadeIn>
     </div>
-
   );
 }
 

@@ -1,17 +1,15 @@
 import React, { Component, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { MDBCard, MDBCardBody, MDBModalFooter, MDBBox } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBFooter, MDBBox} from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Register from './register/Register'
-
+import ForgotPassword from './ForgotPassword'
 
 function Landing() {
  
-
-
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -25,6 +23,12 @@ function Landing() {
     setUser({ ...user, [name]: value });
     setErr('')
   };
+
+  const [modal, setModal] = useState(false);
+
+  const modalClick = e => {
+    setModal(true);
+  }
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -117,16 +121,16 @@ function Landing() {
                   </button>
                   <div>
                     <p className="font-small grey-text">
-                      Forgot your password?{" "}
-                      <Link to="/forgot_password" className="font-small">
+                      Forgot your password?
+                      <Link to="/forgotPassword" className="font-small">
                         Click Here
                       </Link>
-                    </p>{" "}
+                    </p>
                   </div>
                 </div>
               </form>
             </MDBCardBody>
-            <MDBModalFooter className="mx-5 pt-3 mb-1">
+            <MDBFooter className="mx-5 pt-3 mb-1 bg-white">
               <p
                 className="font-small grey-text"
                 style={{ marginRight: "30px" }}
@@ -137,7 +141,7 @@ function Landing() {
                 </Link>
 
               </p>
-            </MDBModalFooter>
+            </MDBFooter>
           </MDBCard>
         </MDBBox>
       </FadeIn>

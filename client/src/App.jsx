@@ -8,15 +8,8 @@ import Body from "./components/body/Body";
 import Landing from "./components/Landing";
 import Notes from "./components/notes/Notes";
 import Register from "./components/register/Register";
-{
-  /* {isLogin ? (
-              <Notes />
-            ) : (
-              <div>
-                <Landing />
-              </div>
-            )} */
-}
+import ForgotPassword from "./components/ForgotPassword"
+
 function App() {
   const [isLogin, setIsLogin] = useState(false);
 
@@ -25,6 +18,7 @@ function App() {
       <Router>
         <Switch>
         <Route exact path="/register" component={Register}/>
+        <Route exact path ="/forgotPassword" component={ForgotPassword}/>
 
         <Route exact path="/" component={Landing} />
         </Switch>

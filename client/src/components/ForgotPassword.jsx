@@ -16,6 +16,7 @@ import "mdbreact/dist/css/mdb.css";
 import FadeIn from "react-fade-in";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 const ForgotPassword = () => {
   const [user, setUser] = useState({
@@ -41,12 +42,11 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      // const res = await Axios.post("/user/login", {
-      //   email: user.email,
-      //   password: user.password,
-      // });
-      // setUser({email: "", password: "" });
-      // setErr(res.data.msg);
+      const res = await Axios.post("/user/forgot", {
+        email: user.email,
+      });
+      setUser({ email: "" });
+      setErr(res.data.msg);
     } catch (err) {
       err.response.data.msg &&
         setErr(
@@ -72,7 +72,9 @@ const ForgotPassword = () => {
                 <h3 className="dark-grey-text mb-5">
                   <strong>Forgot your password?</strong>
                 </h3>
-                <h5 className="dark-grey-text">Enter your email to reset your password.</h5>
+                <h5 className="dark-grey-text">
+                  Enter your email to reset your password.
+                </h5>
                 <h6 style={{ color: "black" }}>{err}</h6>
               </div>
               <form onSubmit={handleSubmit}>
@@ -80,7 +82,7 @@ const ForgotPassword = () => {
                   <input
                     type="email"
                     name="email"
-                    id="login-email"
+                    id="email"
                     required
                     value={user.email}
                     onChange={onChangeInput}
@@ -106,11 +108,15 @@ const ForgotPassword = () => {
                   </button>
                 </div>
               </form>
-              <div style={{marginTop:'10px'}}>
-              <Link to="/" className="blue-text" style={{marginLeft: "20px"}}>
+              <div style={{ marginTop: "10px" }}>
+                <Link
+                  to="/"
+                  className="blue-text"
+                  style={{ marginLeft: "20px" }}
+                >
                   Back to login
                 </Link>
-                </div>
+              </div>
             </MDBCardBody>
             <MDBFooter className="mx-5 pt-3 mb-1 bg-white">
               <p
@@ -121,17 +127,12 @@ const ForgotPassword = () => {
                 <Link to="/register" className="blue-text ml-1">
                   Sign Up
                 </Link>
-                
-
               </p>
 
               <p
                 className="font-small grey-text"
                 style={{ marginRight: "30px" }}
-              >
-                
-
-              </p>
+              ></p>
             </MDBFooter>
           </MDBCard>
         </MDBBox>

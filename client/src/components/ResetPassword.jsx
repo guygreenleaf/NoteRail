@@ -5,8 +5,6 @@ import Axios from "axios";
 
 
 function ResetPassword() {
-
-    console.log(useParams())
     const [user, setUser] = useState({
         password: "",
         password2: ""
@@ -37,13 +35,10 @@ function ResetPassword() {
             const res = await Axios.post("/user/reset",{ 
               password: user.password
             }, {headers: {'Authorization': token}});
-            console.log("password reset!")
             hiding(false);
             setErr(res.data.msg);
-            
           } catch (err) {
-            console.log(err);
-            // err.response.data.msg && setErr(err.response.data.msg);
+            err.response.data.msg && setErr(err.response.data.msg);
           }
         }
       };

@@ -3,7 +3,8 @@ import React from 'react'
 function Notes() {
     return (
         <div>
-            Note Component goes here
+        <div style={{color:'white'}}>Note Component goes here</div>
+            
         </div>
     )
 }

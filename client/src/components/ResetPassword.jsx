@@ -110,8 +110,8 @@ function ResetPassword() {
                       <button
                         style={{
                           marginBottom: "25px",
-                          width: "135px",
-                          height: "45px",
+                          width: "145px",
+                          height: "49px",
                           borderRadius: "3px",
                           letterSpacing: "1.5px",
                           marginTop: "1rem",

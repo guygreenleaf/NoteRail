@@ -1,18 +1,24 @@
 import React, { Component, useState } from "react";
 import { Link, useHistory, Redirect } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./register/Register";
 import ForgotPassword from "./ForgotPassword";
+import { dispatchLogin } from "../redux/actions/authAction";
 
 function Landing() {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  // const auth = useSelector((state) => state.auth);
+  // console.log(auth);
+  // const { User, isLogged } = auth;
+  // const dispatch = useDispatch();
+  // const history = useHistory();
 
   const [err, setErr] = useState("");
   // const { email, password, err, success } = user;
@@ -29,17 +35,6 @@ function Landing() {
     setModal(true);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const res = await Axios.post("/user/login", { email, password });
-  //     setUser({ ...user, err: "", success: res.data.msg });
-  //   } catch (err) {
-  //     err.response.data.msg &&
-  //       setUser({ ...user, err: err.response.data.msg, success: "" });
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -49,6 +44,8 @@ function Landing() {
         password: user.password,
       });
       setUser({ email: "", password: "" });
+      // dispatch(dispatchLogin());
+      // history.push("/notes");
       setErr(res.data.msg);
     } catch (err) {
       err.response.data.msg &&

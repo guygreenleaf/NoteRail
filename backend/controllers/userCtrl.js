@@ -80,14 +80,18 @@ const userCtrl = {
 
             const payload = {id: user._id, name: user.name}
             const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            // localStorage.setItem('token', token)
             
             res.cookie('token', token, {
                 httpOnly: true,
                 maxAge: 7*24*60*60*1000 //7 days
             })
 
+            // localStorage.setItem('token', JSON.stringify(token)
+
+
             res.json({msg: "Login successful", token})
-        } catch (error) {
+        } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     },

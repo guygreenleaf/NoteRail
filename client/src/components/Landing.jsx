@@ -17,8 +17,8 @@ function Landing() {
   // const auth = useSelector((state) => state.auth);
   // console.log(auth);
   // const { User, isLogged } = auth;
-  // const dispatch = useDispatch();
-  // const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const [err, setErr] = useState("");
   // const { email, password, err, success } = user;
@@ -44,8 +44,8 @@ function Landing() {
         password: user.password,
       });
       setUser({ email: "", password: "" });
-      // dispatch(dispatchLogin());
-      // history.push("/notes");
+      dispatch(dispatchLogin());
+      history.push("/notes");
       setErr(res.data.msg);
     } catch (err) {
       err.response.data.msg &&

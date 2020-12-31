@@ -20,7 +20,7 @@ function App() {
     <div className="app">
     {/* Unprotected routes (Note: /reset is only accessible via Authorization token) */}
       <Router>
- 
+
         <Switch>
         <Route exact path="/register" component={Register}/>
         <Route exact path ="/forgotPassword" component={ForgotPassword}/>
@@ -30,11 +30,12 @@ function App() {
 
 
 
-
-      <Route exact path="/notes" component={Notes}/>
+      
 
         {/* Protected routes */}
-
+        <Switch>
+        <Route exact path="/notes" component={Notes}/>
+        </Switch>
       </Router>
     </div>
   );

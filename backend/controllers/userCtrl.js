@@ -78,19 +78,26 @@ const userCtrl = {
 
             console.log(user)
 
-            const payload = {id: user._id, name: user.name}
-            const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
-            // localStorage.setItem('token', token)
+            // const payload = {id: user._id, name: user.name}
+            // const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            // // localStorage.setItem('token', token)
             
-            res.cookie('token', token, {
-                httpOnly: true,
-                maxAge: 7*24*60*60*1000 //7 days
-            })
+            // res.cookie('token', token, {
+            //     httpOnly: true,
+            //     path: '/user/refresh_token',
+            //     maxAge: 7*24*60*60*1000 //7 days
+            // })
 
+            const refresh_token = createRefreshToken({id: user._id})
+            res.cookie('refreshtoken', refresh_token, {
+                httpOnly: true,
+                path: '/user/refresh_token',
+                maxAge: 7*24*60*60*1000 // 7 days
+            })
             // localStorage.setItem('token', JSON.stringify(token)
 
 
-            res.json({msg: "Login successful", token})
+            res.json({msg: "Login successful", refresh_token})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

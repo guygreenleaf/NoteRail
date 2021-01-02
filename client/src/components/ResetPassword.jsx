@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { Link, withRouter, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link,  useParams } from "react-router-dom";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Register from "./register/Register";
-import ForgotPassword from "./ForgotPassword";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import Register from "./register/Register";
+// import ForgotPassword from "./ForgotPassword";
 import { dispatchLogin } from "../redux/actions/authAction";
 
 function Landing() {
@@ -44,6 +44,9 @@ function Landing() {
         password: user.password,
       });
       setUser({ email: "", password: "" });
+
+      localStorage.setItem('firstLogin', true)
+      
       dispatch(dispatchLogin());
       history.push("/notes");
       setErr(res.data.msg);

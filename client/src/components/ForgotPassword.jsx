@@ -1,13 +1,13 @@
 import React from "react";
 import {
   MDBCard,
-  MDBCardTitle,
-  MDBRow,
-  MDBCol,
-  MDBModal,
-  MDBContainer,
-  MDBBtn,
-  MDBIcon,
+  // MDBCardTitle,
+  // MDBRow,
+  // MDBCol,
+  // MDBModal,
+  // MDBContainer,
+  // MDBBtn,
+  // MDBIcon,
   MDBBox,
   MDBCardBody,
   MDBFooter,
@@ -32,11 +32,6 @@ const ForgotPassword = () => {
     setErr("");
   };
 
-  const [modal, setModal] = useState(false);
-
-  const modalClick = (e) => {
-    setModal(true);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

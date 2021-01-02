@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Header from "../header/Header";
 
 function Notes() {
   const handleLogout = async () => {
@@ -14,6 +15,7 @@ function Notes() {
 
   return (
     <div>
+      <Header></Header>
       {/* //Logout button */}
       <div className="col s12" style={{ paddingLeft: "11.250px" }}>
         <button

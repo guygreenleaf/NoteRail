@@ -29,11 +29,15 @@ function Landing() {
     setErr("");
   };
 
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
 
-  const modalClick = (e) => {
-    setModal(true);
-  };
+  // const modalClick = (e) => {
+  //   setModal(true);
+  // };
+
+  // const handleSubmit = () => {
+  //   console.log("we got a submit chief");
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,13 +47,13 @@ function Landing() {
         email: user.email,
         password: user.password,
       });
-      setUser({ email: "", password: "" });
+      // setUser({ email: "", password: "" });
 
-      localStorage.setItem('firstLogin', true)
-      
+      localStorage.setItem("firstLogin", true);
+
       dispatch(dispatchLogin());
       history.push("/notes");
-      setErr(res.data.msg);
+      // setErr(res.data.msg);
     } catch (err) {
       err.response.data.msg &&
         setErr(

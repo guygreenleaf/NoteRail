@@ -16,6 +16,7 @@ import Notes from "./components/notes/Notes";
 import Register from "./components/register/Register";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import ActivationEmail from "./components/register/ActivationEmail";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -24,34 +25,35 @@ import {
 } from "./redux/actions/authAction";
 
 function App() {
-  const dispatch = useDispatch()
-  const token = useSelector(state => state.token)
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.token);
 
   const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const firstLogin = localStorage.getItem('firstLogin')
-    if(firstLogin){
+    const firstLogin = localStorage.getItem("firstLogin");
+    if (firstLogin) {
       const getToken = async () => {
-        const res = await axios.post('/user/refresh_token', null)
-        dispatch({type: 'GET_TOKEN', payload: res.data.access_token})
-      }
-      getToken()
+        const res = await axios.post("/user/refresh_token", null);
+        dispatch({ type: "GET_TOKEN", payload: res.data.access_token });
+      };
+      getToken();
     }
-  },[auth.isLogged, dispatch])
+  }, [auth.isLogged, dispatch]);
 
   useEffect(() => {
-    if(token){
+    if (token) {
       const getUser = () => {
-        dispatch(dispatchLogin())
+        dispatch(dispatchLogin());
 
-        return fetchUser(token).then(res => {
-          dispatch(dispatchGetUser(res))
-        })
-      }
-      getUser()
+        return fetchUser(token).then((res) => {
+          dispatch(dispatchGetUser(res));
+        });
+      };
+      getUser();
     }
-  },[token, dispatch])
+    return token;
+  }, [token, dispatch]);
 
   console.log(auth);
   const { user, isLogged } = auth;
@@ -60,23 +62,25 @@ function App() {
     <div className="app">
       {/* Unprotected routes (Note: /reset is only accessible via Authorization token) */}
       <Router>
-        {isLogged ? <Redirect to={{pathname: "/notes"}}/>
-        : 
         <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/forgotPassword" component={ForgotPassword} />
-          <Route exact path="/user/reset/:token" component={ResetPassword} />
-          <Route exact path="/" component={Landing} />
+          <Route path="/" component={isLogged ? Notes : Landing} exact />
+          <Route
+            path="/register"
+            component={isLogged ? Notes : Register}
+            exact
+          />
+          <Route
+            path="/forgotPassword"
+            component={isLogged ? Notes : ForgotPassword}
+            exact
+          />
+          <Route
+            path="/user/activate/:activation_token"
+            component={ActivationEmail}
+            exact
+          />
+          <Route path="/notes" component={isLogged ? Notes : Landing} />
         </Switch>
-         } 
-
-         {!isLogged ? <Redirect to={{pathname: "/"}}/> 
-      
-      : 
-        <Switch>
-          <Route exact path="/notes" component={Notes} />
-        </Switch>
-         } 
       </Router>
     </div>
   );

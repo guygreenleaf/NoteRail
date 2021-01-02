@@ -35,7 +35,7 @@ const userCtrl = {
             }
 
            const activation_token = createActivationToken(newUser)
-           const url = `${CLIENT_URL}/user/activate${activation_token}`
+           const url = `${CLIENT_URL}user/activate/${activation_token}`
            sendMail(email, url, "Verify your email address")
             
             console.log("Registration successful!")
@@ -123,15 +123,15 @@ const userCtrl = {
             const user = await Users.findOne({email})
             if(!user) return res.status(500).json({msg: "This email does not exist."})
 
-            const payload = {id: user._id, name: user.name}
+            // const payload = {id: user._id, name: user.name}
 
-            const access_token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
-
+            // const access_token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            const access_token = createAccessToken({id: user._id})
             const url = `${CLIENT_URL}user/reset/${access_token}`
 
             sendMail(email, url, "Reset password")
             res.json({msg:"Instructions to access your acount have been sent - please check your email."})
-        } catch (error) {
+        } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     },
@@ -147,7 +147,7 @@ const userCtrl = {
             })
 
             res.json({msg: "Password successfully reset."})
-        } catch (error) {
+        } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     },

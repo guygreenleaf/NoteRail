@@ -8,11 +8,9 @@ import App from "./App";
 import DataProvider from "./redux/store";
 
 ReactDOM.render(
-    <React.StrictMode>
   <DataProvider>
     <App />
-  </DataProvider>
-  </React.StrictMode>
-,
+  </DataProvider>,
+
   document.getElementById("root")
 );

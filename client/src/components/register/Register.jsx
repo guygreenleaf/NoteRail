@@ -19,10 +19,9 @@ function Register() {
     setErr("");
   };
   const clearState = () => {
-    setUser({ password: "", password2: "" });
+    setUser({ name: "", email: "", password: "", password2: "" });
   };
 
-  
   const registerSubmit = async (e) => {
     e.preventDefault();
     if (user.password !== user.password2) {
@@ -34,7 +33,7 @@ function Register() {
           email: user.email,
           password: user.password,
         });
-        setUser({ name: "", email: "", password: "" });
+        setUser({ name: "", email: "", password: "", password2: "" });
         setErr(res.data.msg);
       } catch (err) {
         err.response.data.msg && setErr(err.response.data.msg);

@@ -74,6 +74,7 @@ function App() {
             component={isLogged ? Notes : ForgotPassword}
             exact
           />
+          <Route path="/user/reset/:token" component={ResetPassword} />
           <Route
             path="/user/activate/:activation_token"
             component={ActivationEmail}

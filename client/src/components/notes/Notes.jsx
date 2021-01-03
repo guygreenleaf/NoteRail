@@ -7,6 +7,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { format } from "timeago";
+import Draggable from "react-draggable";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -20,8 +21,8 @@ function Notes() {
   };
 
   useEffect(() => {
-    if(localStorage.getItem("firstLogin") === true){
-      getNotes()
+    if (localStorage.getItem("firstLogin") === true) {
+      getNotes();
     }
   }, []);
 
@@ -46,9 +47,10 @@ function Notes() {
   };
 
   return (
-    <div>
+    <>
       <Header></Header>
       {/* //Logout button */}
+
       <div
         className="note-wrapper"
         style={{
@@ -59,98 +61,101 @@ function Notes() {
           margin: "auto",
         }}
       >
-        <div
-          className="card"
-          style={{
-            width: "300px",
-            boxShadow: "2px black",
-            background:
-              "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
-            padding: "10px",
-            position: "relative",
-            color: "black",
-            margin: "15px",
-            cursor: "pointer",
-          }}
-        >
-          <h4
-            title="Note Title"
-            style={{
-              marginRight: "10px",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Note Title
-          </h4>
-          <div className="text-wrapper"></div>
-          <p>
-            some text ome textome text ome text ome text ome text ome text ome
-            text ome text ome text ome textome textome textome textome textome
-            textome textome textome textome textome textome textome textome
-            textome textome textome textome textome textome text
-          </p>
+        <div style={{ height: "100vh", width: "100vw", paddingTop: "50px" }}>
+          <Draggable bounds="parent">
+            <div
+              className="card"
+              style={{
+                width: "300px",
+                boxShadow: "2px black",
+                background:
+                  "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
+                padding: "10px",
+                position: "relative",
+                color: "black",
+                margin: "15px",
+                cursor: "pointer",
+              }}
+            >
+              <h4
+                title="Note Title"
+                style={{
+                  marginRight: "10px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Note Title
+              </h4>
+              <div className="text-wrapper"></div>
+              <p>Note Text</p>
 
-          <p className="date" style={{ textAlign: "right", color: "black" }}>
-            Note Date
-          </p>
-          <div
-            className="card-footer"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              height: "40px",
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-              fontSize: "12px",
-            }}
-          >
-            User Name
-            {/* <Link to="/" style={{ color: "black" }}>
+              <p
+                className="date"
+                style={{ textAlign: "right", color: "black" }}
+              >
+                Note Date
+              </p>
+              <div
+                className="card-footer"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  height: "40px",
+                  textTransform: "uppercase",
+                  letterSpacing: "2px",
+                  fontSize: "12px",
+                }}
+              >
+                User Name
+                {/* <Link to="/" style={{ color: "black" }}>
               Edit
             </Link> */}
-            {/* NOTE! THIS SHOULD ONLY SHOW IF THE USER ID OF THE NOTE MATCHES THE LOGGED IN USERS ID!!!! */}
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <SettingsIcon />
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>
-            {/* SEE NOTE!!!!!! */}
-          </div>
-          <button
-            className="close"
-            style={{
-              position: "absolute",
-              top: 0,
-              right: "10px",
-              fontWeight: "900",
-              cursor: "pointer",
-              background: "transparent",
-              border: "none",
-              outline: "none",
-              color: "white",
-            }}
-          >
-            x
-          </button>
+                {/* NOTE! THIS SHOULD ONLY SHOW IF THE USER ID OF THE NOTE MATCHES THE LOGGED IN USERS ID!!!! */}
+                <Button
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <SettingsIcon />
+                </Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                </Menu>
+                {/* SEE NOTE!!!!!! */}
+              </div>
+              <button
+                className="close"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: "10px",
+                  fontWeight: "900",
+                  cursor: "pointer",
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "white",
+                }}
+              >
+                x
+              </button>
+            </div>
+          </Draggable>
         </div>
       </div>
+
       <div className="col s12" style={{ paddingLeft: "11.250px" }}>
         <button
           onClick={handleLogout}
@@ -168,7 +173,7 @@ function Notes() {
           Logout
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

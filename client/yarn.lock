@@ -7061,6 +7061,11 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
+"jquery@>=1.5.0 <4.0":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -11399,6 +11404,13 @@ thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
+
+timeago@^1.6.7:
+  version "1.6.7"
+  resolved "https://registry.yarnpkg.com/timeago/-/timeago-1.6.7.tgz#afd467c29a911e697fc22a81888c7c3022783cb5"
+  integrity sha512-FikcjN98+ij0siKH4VO4dZ358PR3oDDq4Vdl1+sN9gWz1/+JXGr3uZbUShYH/hL7bMhcTpPbplJU5Tej4b4jbQ==
+  dependencies:
+    jquery ">=1.5.0 <4.0"
 
 timers-browserify@^2.0.4:
   version "2.0.12"

@@ -2,18 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import {
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarNav,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBNavItem,
-  MDBNavLink,
-  MDBContainer,
-  MDBMask,
-  MDBView,
-} from "mdbreact";
+
 import { BrowserRouter as Router } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";

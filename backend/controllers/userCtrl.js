@@ -78,8 +78,9 @@ const userCtrl = {
 
             console.log(user)
 
-            // const payload = {id: user._id, name: user.name}
-            // const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            const payload = {id: user._id, name: user.name}
+            const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
+            const access_token = createAccessToken({id: user._id, name: user.name});
             // // localStorage.setItem('token', token)
             
             // res.cookie('token', token, {
@@ -97,7 +98,7 @@ const userCtrl = {
             // localStorage.setItem('token', JSON.stringify(token)
 
 
-            res.json({msg: "Login successful", refresh_token})
+            res.json({msg: "Login successful", refresh_token, token, access_token})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

@@ -19,6 +19,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,16 +64,19 @@ function Header() {
       }}
     >
       <h2>
-        <Link
-          to="/notes"
-          style={{
-            color: "white",
-            fontSize: "18px",
-            fontFamily: "Righteous",
-            marginLeft: "15px",
-          }}
-        >
-          NoteRail
+        <Link to="/notes">
+          <p
+            style={{
+              color: "white",
+              fontSize: "30px",
+              fontFamily: "Righteous",
+              marginLeft: "15px",
+              marginTop: "8px",
+              marginBottom: "2px",
+            }}
+          >
+            NoteRail{" "}
+          </p>
         </Link>
       </h2>
       <Grid container justify="flex-end">
@@ -80,8 +84,14 @@ function Header() {
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={handleClick}
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(199,199,255,1) 0%, rgba(14,158,187,1) 100%)",
+            border: "1px solid black",
+            borderRadius: "2px",
+          }}
         >
-          Open Menu
+          <MenuIcon style={{ height: "40px" }} />
         </Button>
         <Menu
           id="simple-menu"
@@ -90,9 +100,11 @@ function Header() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <Link to="/profile">
+            <MenuItem>Profile</MenuItem>
+          </Link>
           <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </Grid>
     </div>

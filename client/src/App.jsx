@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-// import Header from "./components/header/Header";
+import Header from "./components/header/Header";
 // import Body from "./components/body/Body";
 import Landing from "./components/Landing";
 import Notes from "./components/notes/Notes";
@@ -17,6 +17,7 @@ import Register from "./components/register/Register";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ActivationEmail from "./components/register/ActivationEmail";
+import Profile from "./components/profile/Profile";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -81,6 +82,11 @@ function App() {
             exact
           />
           <Route path="/notes" component={isLogged ? Notes : Landing} />
+          <Route
+            path="/profile"
+            component={isLogged ? Profile : Landing}
+            exact
+          />
         </Switch>
       </Router>
     </div>

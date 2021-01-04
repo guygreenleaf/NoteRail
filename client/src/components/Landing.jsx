@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
@@ -50,6 +50,7 @@ function Landing() {
       // setUser({ email: "", password: "" });
 
       localStorage.setItem("firstLogin", true);
+      localStorage.setItem("tokenStore", res.data.access_token);
 
       dispatch(dispatchLogin());
       history.push("/notes");

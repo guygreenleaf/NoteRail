@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
-  Redirect,
+  // Link,
+  // Redirect,
 } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import Header from "./components/header/Header";
+// import Header from "./components/header/Header";
 // import Body from "./components/body/Body";
 import Landing from "./components/Landing";
 import Notes from "./components/notes/Notes";
@@ -18,6 +18,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ActivationEmail from "./components/register/ActivationEmail";
 import Profile from "./components/profile/Profile";
+import SideBar from "./components/header/SideBar";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -56,8 +57,8 @@ function App() {
     return token;
   }, [token, dispatch]);
 
-  console.log(auth);
-  const { user, isLogged } = auth;
+  // console.log(auth);
+  const { isLogged } = auth;
 
   return (
     <div className="app">

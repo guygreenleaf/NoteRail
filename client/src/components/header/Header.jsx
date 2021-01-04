@@ -22,11 +22,6 @@ function Header() {
   };
 
   const [collapsed, isCollapsed] = useState(false);
-  const [isWideEnough, isWide] = useState(false);
-
-  const auth = useSelector((state) => state.auth);
-
-  const { user, isLogged } = auth;
 
   const handleLogout = async () => {
     try {
@@ -38,12 +33,6 @@ function Header() {
     }
   };
 
-  const onClick = () => {
-    isCollapsed(!collapsed);
-  };
-  // const userLink = () => {
-  //     return <li className="drop-nav"
-  // }
   return (
     <div
       style={{

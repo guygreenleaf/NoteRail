@@ -7,7 +7,6 @@ import "./index.scss";
 import App from "./App";
 import DataProvider from "./redux/store";
 import "./index.css";
-
 ReactDOM.render(
   <DataProvider>
     <App />

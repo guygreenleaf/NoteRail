@@ -7,7 +7,6 @@ const initialState = {
   password: "",
   cf_password: "",
   err: "",
-  success: "",
 };
 
 function ResetPassword() {
@@ -21,7 +20,7 @@ function ResetPassword() {
     return false;
   };
   const [data, setData] = useState(initialState);
-  const { password, cf_password, err, success } = data;
+  const { password, cf_password, err } = data;
   // const [user, setUser] = useState({
   //   password: "",
   //   password2: "",
@@ -35,7 +34,7 @@ function ResetPassword() {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value, err: "", success: "" });
+    setData({ ...data, [name]: value, err: "" });
 
     // setUser({ ...user, [name]: value });
     // setErr("");
@@ -49,14 +48,13 @@ function ResetPassword() {
       return setData({
         ...data,
         err: "Password must be at least 6 characters.",
-        success: "",
       });
 
     if (!isMatch(password, cf_password))
-      return setData({ ...data, err: "Password did not match.", success: "" });
+      return setData({ ...data, err: "Password did not match." });
 
     try {
-      const res = await Axios.post(
+      await Axios.post(
         "/user/reset",
         { password },
         {
@@ -64,10 +62,9 @@ function ResetPassword() {
         }
       );
       bigSubmitter();
-      return setData({ ...data, err: "", success: res.data.msg });
+      return setData({ ...data, err: "" });
     } catch (err) {
-      err.response.data.msg &&
-        setData({ ...data, err: err.response.data.msg, success: "" });
+      err.response.data.msg && setData({ ...data, err: err.response.data.msg });
     }
 
     // e.preventDefault();

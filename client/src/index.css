@@ -74,6 +74,15 @@
   height: 100vh;
   margin: 0;
   background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 90%);
+  opacity: 0.8;
+}
+
+.SideBar:hover {
+  opacity: 1;
+}
+.settingsIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 1026px) {

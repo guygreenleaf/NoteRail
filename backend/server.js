@@ -16,7 +16,7 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
-//Routes
+// //Routes
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api/notes', require('./routes/noteRouter'))
@@ -25,6 +25,7 @@ app.use(jwt({
     algorithms: ['HS256'],
     getToken: req=>req.cookies.token
 }))
+
 //Connect to mongoDB
 const URI =  process.env.MONGODB_URL 
 mongoose.connect(URI, {

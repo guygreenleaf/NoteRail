@@ -10,6 +10,14 @@ const noteCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    getAllNotes: async (req, res) =>{
+        try {
+            const allNotes = await Notes.find({isShared:true})
+            res.json(allNotes);
+        } catch (error) {
+            return res.status(500).json({msg: error.message})
+        }
+    }, 
     createNote: async(req, res) =>{
         try {
             const {title, content, date} = req.body;
@@ -18,7 +26,8 @@ const noteCtrl = {
                 content,
                 date,
                 user_id: req.user.id,
-                name: req.user.name
+                name: req.user.name,
+                isShared: false
             })
             
             await newNote.save()
@@ -51,6 +60,19 @@ const noteCtrl = {
             res.status(500).json({msg: err.message})
         }
     },
+    // updateVisibility: async(req, res) =>{
+    //     try {
+
+    //         const {isShared} = req.body;
+    //         await Notes.findOneAndUpdate({_id: req.params.id}, {
+    //             isShared: !isShared
+    //         })
+            
+    //         res.json({msg: "Updated Note"})
+    //     } catch (err) {
+    //         res.status(500).json({msg: err.message})
+    //     }
+    // },
     getNote: async (req, res) => {
         try {
             const note = await Notes.findById(req.params.id)

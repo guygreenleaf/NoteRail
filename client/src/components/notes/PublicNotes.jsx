@@ -14,12 +14,12 @@ import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import SideBar from "../header/SideBar";
 
 const formatter = buildFormatter(englishStrings);
-function Notes() {
+function PublicNotes() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
 
   const getNotes = async (token) => {
-    const res = await axios.get("api/notes", {
+    const res = await axios.get("api/notes/public", {
       headers: { Authorization: token },
     });
     setNotes(res.data);
@@ -43,6 +43,14 @@ function Notes() {
     setAnchorEl(null);
   };
 
+  let pubiNotes = [];
+
+  for (const i in notes) {
+    if (notes[i].isShared === true) {
+      pubiNotes.push(notes);
+    }
+  }
+  console.log(pubiNotes);
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -167,4 +175,4 @@ function Notes() {
   );
 }
 
-export default Notes;
+export default PublicNotes;

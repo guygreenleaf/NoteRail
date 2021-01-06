@@ -1,16 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.scss";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  // Link,
-  // Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-// import Header from "./components/header/Header";
-// import Body from "./components/body/Body";
 import Landing from "./components/Landing";
 import Notes from "./components/notes/Notes";
 import Register from "./components/register/Register";
@@ -18,7 +10,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import ActivationEmail from "./components/register/ActivationEmail";
 import Profile from "./components/profile/Profile";
-import SideBar from "./components/header/SideBar";
+import PublicNotes from "./components/notes/PublicNotes";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -62,7 +54,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* Unprotected routes (Note: /reset is only accessible via Authorization token) */}
       <Router>
         <Switch>
           <Route path="/" component={isLogged ? Notes : Landing} exact />
@@ -86,6 +77,11 @@ function App() {
           <Route
             path="/profile"
             component={isLogged ? Profile : Landing}
+            exact
+          />
+          <Route
+            path="/public"
+            component={isLogged ? PublicNotes : Landing}
             exact
           />
         </Switch>

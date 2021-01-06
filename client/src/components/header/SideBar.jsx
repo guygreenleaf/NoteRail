@@ -6,7 +6,8 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
-
+import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 
@@ -47,6 +48,8 @@ function SideBar() {
             border: "2px solid black",
             borderRadius: "75px",
             boxShadow: "2px 2px grey",
+            height: "150px",
+            width: "150px",
           }}
         />
         <h3
@@ -65,7 +68,10 @@ function SideBar() {
   };
   return (
     <div className="SideBar">
-      <div className="logo" style={{ marginTop: "25px" }}>
+      <div
+        className="logo"
+        style={{ marginTop: "25px", marginBottom: "100px" }}
+      >
         <ul>{userLink()}</ul>
         {/* <h1>
           <Link
@@ -113,8 +119,60 @@ function SideBar() {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
+      </div>
+      <div
+        className="settingsIcon"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginLeft: "100px",
+          marginRight: "100px",
+        }}
+      >
+        {/* <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        > */}
+
+        <PublicRoundedIcon
+          style={{
+            height: "40px",
+            width: "40px",
+            marginTop: "100px",
+            color: "#282F36",
+          }}
+          className="setIcon"
+          onClick={(event) => (window.location.href = "/public")}
+        ></PublicRoundedIcon>
+      </div>
+      <div
+        className="settingsIcon"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginLeft: "100px",
+          marginRight: "100px",
+        }}
+      >
+        {/* <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        > */}
+
+        <PeopleAltIcon
+          style={{
+            height: "40px",
+            width: "40px",
+            marginTop: "100px",
+            color: "#282F36",
+          }}
+          className="setIcon"
+          onClick={(event) => (window.location.href = "/public")}
+        ></PeopleAltIcon>
       </div>
     </div>
   );

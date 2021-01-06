@@ -9,8 +9,8 @@ router.route('/')
 router.route('/public')
     .get(auth, noteCtrl.getAllNotes)
 
-// router.route('/updateVisibility')
-//     .put(auth, noteCtrl.updateVisibility)
+router.route('/updateVisibility/:id')
+    .put(auth, noteCtrl.updateVisibility)
 // router.post('/notes/createNote', auth, noteCtrl.createNote)
 // router.get('/notes/getNote', auth, noteCtrl.getNotes)
 

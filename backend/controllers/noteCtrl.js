@@ -60,19 +60,22 @@ const noteCtrl = {
             res.status(500).json({msg: err.message})
         }
     },
-    // updateVisibility: async(req, res) =>{
-    //     try {
-
-    //         const {isShared} = req.body;
-    //         await Notes.findOneAndUpdate({_id: req.params.id}, {
-    //             isShared: !isShared
-    //         })
+    updateVisibility: async(req, res) =>{
+        try {
+            const {isShared} = req.body
+            let public = await Notes.findById(req.params.id)
             
-    //         res.json({msg: "Updated Note"})
-    //     } catch (err) {
-    //         res.status(500).json({msg: err.message})
-    //     }
-    // },
+
+            const note = await Notes.findOneAndUpdate({_id: req.params.id}, {
+                isShared: !public.isShared
+            })
+
+            res.json( public.isShared)
+            // res.json({msg: "Updated Note"})
+        } catch (err) {
+            res.status(500).json({msg: err.message})
+        }
+    },
     getNote: async (req, res) => {
         try {
             const note = await Notes.findById(req.params.id)

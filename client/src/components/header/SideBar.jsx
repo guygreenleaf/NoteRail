@@ -9,7 +9,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import HomeIcon from "@material-ui/icons/Home";
-
+import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 
@@ -185,7 +185,7 @@ function SideBar() {
           onClick={handleClick}
         > */}
 
-        <PeopleAltIcon
+        <AddToPhotosIcon
           style={{
             height: "40px",
             width: "40px",
@@ -194,7 +194,7 @@ function SideBar() {
           }}
           className="setIcon"
           onClick={(event) => (window.location.href = "/public")}
-        ></PeopleAltIcon>
+        ></AddToPhotosIcon>
       </div>
     </div>
   );

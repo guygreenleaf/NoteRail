@@ -7,6 +7,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import Draggable from "react-draggable";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";

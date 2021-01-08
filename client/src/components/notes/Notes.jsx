@@ -26,7 +26,8 @@ import {
 import PublicIcon from "@material-ui/icons/Public";
 import VpnLockIcon from "@material-ui/icons/VpnLock";
 import FadeIn from "react-fade-in";
-
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 const formatter = buildFormatter(englishStrings);
 function Notes() {
   const [notes, setNotes] = useState([]);
@@ -169,6 +170,17 @@ function Notes() {
                     marginBottom: "0px",
                   }}
                 >
+                  <Link to={`/editContent/${note._id}`}>
+                    <EditIcon
+                      className="settingsIcon"
+                      style={{
+                        height: "30px",
+                        width: "30px",
+                        float: "left",
+                        color: "#0F1720",
+                      }}
+                    />
+                  </Link>
                   <TimeAgo
                     className="testTime"
                     date={note.date}
@@ -273,6 +285,7 @@ function Notes() {
                           style={{
                             height: "30px",
                             width: "30px",
+                            color: "red",
                           }}
                         ></VpnLockIcon>
                       </div>
@@ -280,22 +293,16 @@ function Notes() {
                   )}
 
                   <div style={{ width: "20px", marginRight: "25px" }}>
-                    <Button
-                      aria-controls="simple-menu"
-                      aria-haspopup="true"
-                      onClick={handleClick}
-                      style={{
-                        background: "transparent",
-                        boxShadow: "none",
-                      }}
-                    >
-                      <AssignmentRoundedIcon
+                    <Link to={`/delNote/${note._id}`}>
+                      <DeleteForeverIcon
+                        className="screenIcon"
                         style={{
-                          height: "30px",
-                          width: "30px",
+                          height: "35px",
+                          width: "35px",
+                          color: "#0F1720",
                         }}
                       />
-                    </Button>
+                    </Link>
                   </div>
                   <Menu
                     id="simple-menu"

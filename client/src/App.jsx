@@ -12,6 +12,8 @@ import ActivationEmail from "./components/register/ActivationEmail";
 import Profile from "./components/profile/Profile";
 import PublicNotes from "./components/notes/PublicNotes";
 import EditNote from "./components/notes/EditNote";
+import DeleteNote from "./components/notes/DeleteNote";
+import EditContent from "./components/notes/EditContent";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -86,6 +88,16 @@ function App() {
             exact
           />
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />
+          <Route
+            path="/delNote/:id"
+            component={isLogged ? DeleteNote : Landing}
+            exact
+          />
+          <Route
+            path="/editContent/:id"
+            component={isLogged ? EditContent : Landing}
+            exact
+          />
         </Switch>
       </Router>
     </div>

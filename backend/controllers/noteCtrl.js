@@ -72,7 +72,7 @@ const noteCtrl = {
                 isShared: !public.isShared
             })
 
-            // res.json( public.isShared)
+
             res.json({msg: "Updated Note"})
         } catch (err) {
             res.status(500).json({msg: err.message})

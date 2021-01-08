@@ -23,6 +23,8 @@ import {
   MDBModalFooter,
   MDBIcon,
 } from "mdbreact";
+import PublicIcon from "@material-ui/icons/Public";
+import VpnLockIcon from "@material-ui/icons/VpnLock";
 
 const formatter = buildFormatter(englishStrings);
 function Notes() {
@@ -226,17 +228,19 @@ function Notes() {
                     //   );
                     // }}
                     >
-                      <MDBIcon
+                      <PublicIcon
                         icon="edit"
                         className="screenIcon"
                         size="lg"
                         style={{
                           color: "#0F1720",
-                          marginLeft: "3px",
+                          marginLeft: "",
+                          height: "30px",
+                          width: "30px",
                         }}
                       />
                     </div>
-                    <p
+                    {/* <p
                       style={{
                         fontSize: "14px",
                         fontWeight: "800",
@@ -247,28 +251,30 @@ function Notes() {
                       }}
                     >
                       Edit
-                    </p>
+                    </p> */}
                   </Link>
                 ) : (
-                  <div
-                    onClick={async () => {
-                      const bigtoken = localStorage.getItem("tokenStore");
-                      await axios.put(
-                        `api/notes/updateVisibility/${note._id}`,
-                        {
-                          headers: { Authorization: bigtoken },
-                        }
-                      );
-                    }}
-                  >
-                    <ScreenShareIcon
-                      className="screenIcon"
-                      style={{
-                        height: "30px",
-                        width: "30px",
-                      }}
-                    ></ScreenShareIcon>
-                  </div>
+                  <Link to={`/${note._id}`}>
+                    <div
+                    // onClick={async () => {
+                    //   const bigtoken = localStorage.getItem("tokenStore");
+                    //   await axios.put(
+                    //     `api/notes/updateVisibility/${note._id}`,
+                    //     {
+                    //       headers: { Authorization: bigtoken },
+                    //     }
+                    //   );
+                    // }}
+                    >
+                      <VpnLockIcon
+                        className="screenIcon"
+                        style={{
+                          height: "30px",
+                          width: "30px",
+                        }}
+                      ></VpnLockIcon>
+                    </div>
+                  </Link>
                 )}
 
                 <div style={{ width: "20px", marginRight: "25px" }}>

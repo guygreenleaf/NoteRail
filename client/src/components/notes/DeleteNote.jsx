@@ -15,7 +15,7 @@ function DeleteNote() {
   });
   const [token, setToken] = useState("");
 
-  //   let { id } = useParams();
+  let { id } = useParams();
 
   //   console.log(id);
   //   const getNote = async (token) => {
@@ -73,7 +73,7 @@ function DeleteNote() {
                     <button
                       onClick={async () => {
                         const bigtoken = localStorage.getItem("tokenStore");
-                        await Axios.delete(`api/notes/delete/${note._id}`, {
+                        await Axios.delete(`api/notes/${id}`, {
                           headers: { Authorization: bigtoken },
                         });
                       }}

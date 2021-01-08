@@ -85,12 +85,26 @@
   transform: scale(1.1);
 }
 
+.screenIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 @media only screen and (max-width: 1026px) {
   .SideBar {
     display: none;
   }
   .YEP {
     justify-content: center;
+    margin-right: 200px;
+  }
+  .card {
+    margin-right: 150px;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  .SideBar {
+    display: none;
   }
 }
 ::-webkit-scrollbar {

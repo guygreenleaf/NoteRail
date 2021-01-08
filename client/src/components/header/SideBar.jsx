@@ -8,6 +8,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import HomeIcon from "@material-ui/icons/Home";
+
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 
@@ -121,6 +123,26 @@ function SideBar() {
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
+      </div>
+      <div
+        className="settingsIcon"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginLeft: "100px",
+          marginRight: "100px",
+        }}
+      >
+        <HomeIcon
+          style={{
+            height: "40px",
+            width: "40px",
+            marginTop: "100px",
+            color: "#282F36",
+          }}
+          className="setIcon"
+          onClick={(event) => (window.location.href = "/notes")}
+        />
       </div>
       <div
         className="settingsIcon"

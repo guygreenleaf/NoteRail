@@ -63,15 +63,17 @@ const noteCtrl = {
     updateVisibility: async(req, res) =>{
         try {
             const {isShared} = req.body
+            const identifier = req.params.id
             let public = await Notes.findById(req.params.id)
-            
+        
+            // res.json(public.isShared);
 
-            const note = await Notes.findOneAndUpdate({_id: req.params.id}, {
+            const note = await Notes.findOneAndUpdate({_id: identifier}, {
                 isShared: !public.isShared
             })
 
-            res.json( public.isShared)
-            // res.json({msg: "Updated Note"})
+            // res.json( public.isShared)
+            res.json({msg: "Updated Note"})
         } catch (err) {
             res.status(500).json({msg: err.message})
         }

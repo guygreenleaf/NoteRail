@@ -163,7 +163,7 @@ function PublicNotes() {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={handleClose}>Edit Note</MenuItem>
-                  <MenuItem onClick={handleClose}>Share Note</MenuItem>
+                  <MenuItem onClick={handleClose}>Hide Note</MenuItem>
                   <MenuItem onClick={handleClose}>Delete Note</MenuItem>
                 </Menu>
               </div>

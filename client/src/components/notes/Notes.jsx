@@ -25,6 +25,7 @@ import {
 } from "mdbreact";
 import PublicIcon from "@material-ui/icons/Public";
 import VpnLockIcon from "@material-ui/icons/VpnLock";
+import FadeIn from "react-fade-in";
 
 const formatter = buildFormatter(englishStrings);
 function Notes() {
@@ -99,148 +100,149 @@ function Notes() {
   };
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <SideBar></SideBar>
-      </div>
+      <FadeIn transitionDuration="800">
+        <div style={{ display: "flex" }}>
+          <SideBar></SideBar>
+        </div>
 
-      <div style={{}}>
-        <div
-          className="YEP"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            marginLeft: "250px",
-            marginRight: "100px",
-            height: "100vh",
-          }}
-        >
-          {notes.map((note) => (
-            <div
-              className="card"
-              style={{
-                width: "275px",
-                boxShadow: "2px black",
-                background:
-                  "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
-                padding: "10px",
-                position: "relative",
-                color: "black",
-                margin: "15px",
-                // cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
-                maxHeight: "300px",
-                flexShrink: 0,
-              }}
-              key={note._id}
-            >
-              <h2
-                title={note.title}
-                style={{
-                  textOverflow: "ellipsis",
-                  paddingBottom: "1px",
-                  fontSize: "26px",
-                }}
-              >
-                {note.title}
-              </h2>
-
-              <div className="text-wrapper"></div>
-              <p
-                style={{
-                  height: "300px",
-                  maxHeight: "300px",
-                  overflowY: "auto",
-                  fontSize: "18px",
-                }}
-              >
-                {note.content}
-              </p>
-
+        <div style={{}}>
+          <div
+            className="YEP"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              marginLeft: "250px",
+              marginRight: "100px",
+              height: "100vh",
+            }}
+          >
+            {notes.map((note) => (
               <div
-                className="date"
+                className="card"
                 style={{
-                  textAlign: "right",
+                  width: "275px",
+                  boxShadow: "2px black",
+                  background:
+                    "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
+                  padding: "10px",
+                  position: "relative",
                   color: "black",
-                  fontSize: "16px",
-                  marginBottom: "0px",
-                }}
-              >
-                <TimeAgo
-                  className="testTime"
-                  date={note.date}
-                  formatter={formatter}
-                />
-
-                {note.isShared ? (
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      letterSpacing: "1px",
-                      display: "flex",
-                      justifyContent: "left",
-                      marginLeft: "200px",
-                    }}
-                  >
-                    Public
-                  </p>
-                ) : (
-                  <p
-                    style={{
-                      fontSize: "15px",
-                      letterSpacing: "1px",
-                      // display: "flex",
-                      justifyContent: "left",
-                      marginLeft: "125px",
-                    }}
-                  >
-                    Private
-                  </p>
-                )}
-              </div>
-
-              <div
-                className="card-footer"
-                style={{
+                  margin: "15px",
+                  // cursor: "pointer",
                   display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "100%",
-                  height: "50px",
-                  textTransform: "uppercase",
-                  letterSpacing: "2px",
-                  fontSize: "20px",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                  maxHeight: "300px",
+                  flexShrink: 0,
                 }}
+                key={note._id}
               >
-                {note.name}
+                <h2
+                  title={note.title}
+                  style={{
+                    textOverflow: "ellipsis",
+                    paddingBottom: "1px",
+                    fontSize: "26px",
+                  }}
+                >
+                  {note.title}
+                </h2>
 
-                {note.isShared ? (
-                  <Link to={`/${note._id}`}>
-                    <div
-                    // onClick={async () => {
-                    //   const bigtoken = localStorage.getItem("tokenStore");
-                    //   await axios.put(
-                    //     `api/notes/updateVisibility/${note._id}`,
-                    //     {
-                    //       headers: { Authorization: bigtoken },
-                    //     }
-                    //   );
-                    // }}
+                <div className="text-wrapper"></div>
+                <p
+                  style={{
+                    height: "300px",
+                    maxHeight: "300px",
+                    overflowY: "auto",
+                    fontSize: "18px",
+                  }}
+                >
+                  {note.content}
+                </p>
+
+                <div
+                  className="date"
+                  style={{
+                    textAlign: "right",
+                    color: "black",
+                    fontSize: "16px",
+                    marginBottom: "0px",
+                  }}
+                >
+                  <TimeAgo
+                    className="testTime"
+                    date={note.date}
+                    formatter={formatter}
+                  />
+
+                  {note.isShared ? (
+                    <p
+                      style={{
+                        fontSize: "15px",
+                        letterSpacing: "1px",
+                        display: "flex",
+                        justifyContent: "left",
+                        marginLeft: "200px",
+                      }}
                     >
-                      <PublicIcon
-                        icon="edit"
-                        className="screenIcon"
-                        size="lg"
-                        style={{
-                          color: "#0F1720",
-                          marginLeft: "",
-                          height: "30px",
-                          width: "30px",
-                        }}
-                      />
-                    </div>
-                    {/* <p
+                      Public
+                    </p>
+                  ) : (
+                    <p
+                      style={{
+                        fontSize: "15px",
+                        letterSpacing: "1px",
+                        // display: "flex",
+                        justifyContent: "left",
+                        marginLeft: "125px",
+                      }}
+                    >
+                      Private
+                    </p>
+                  )}
+                </div>
+
+                <div
+                  className="card-footer"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    height: "50px",
+                    textTransform: "uppercase",
+                    letterSpacing: "2px",
+                    fontSize: "20px",
+                  }}
+                >
+                  {note.name}
+
+                  {note.isShared ? (
+                    <Link to={`/${note._id}`}>
+                      <div
+                      // onClick={async () => {
+                      //   const bigtoken = localStorage.getItem("tokenStore");
+                      //   await axios.put(
+                      //     `api/notes/updateVisibility/${note._id}`,
+                      //     {
+                      //       headers: { Authorization: bigtoken },
+                      //     }
+                      //   );
+                      // }}
+                      >
+                        <PublicIcon
+                          icon="edit"
+                          className="screenIcon"
+                          size="lg"
+                          style={{
+                            color: "#0F1720",
+                            marginLeft: "",
+                            height: "30px",
+                            width: "30px",
+                          }}
+                        />
+                      </div>
+                      {/* <p
                       style={{
                         fontSize: "14px",
                         fontWeight: "800",
@@ -252,70 +254,71 @@ function Notes() {
                     >
                       Edit
                     </p> */}
-                  </Link>
-                ) : (
-                  <Link to={`/${note._id}`}>
-                    <div
-                    // onClick={async () => {
-                    //   const bigtoken = localStorage.getItem("tokenStore");
-                    //   await axios.put(
-                    //     `api/notes/updateVisibility/${note._id}`,
-                    //     {
-                    //       headers: { Authorization: bigtoken },
-                    //     }
-                    //   );
-                    // }}
+                    </Link>
+                  ) : (
+                    <Link to={`/${note._id}`}>
+                      <div
+                      // onClick={async () => {
+                      //   const bigtoken = localStorage.getItem("tokenStore");
+                      //   await axios.put(
+                      //     `api/notes/updateVisibility/${note._id}`,
+                      //     {
+                      //       headers: { Authorization: bigtoken },
+                      //     }
+                      //   );
+                      // }}
+                      >
+                        <VpnLockIcon
+                          className="screenIcon"
+                          style={{
+                            height: "30px",
+                            width: "30px",
+                          }}
+                        ></VpnLockIcon>
+                      </div>
+                    </Link>
+                  )}
+
+                  <div style={{ width: "20px", marginRight: "25px" }}>
+                    <Button
+                      aria-controls="simple-menu"
+                      aria-haspopup="true"
+                      onClick={handleClick}
+                      style={{
+                        background: "transparent",
+                        boxShadow: "none",
+                      }}
                     >
-                      <VpnLockIcon
-                        className="screenIcon"
+                      <AssignmentRoundedIcon
                         style={{
                           height: "30px",
                           width: "30px",
                         }}
-                      ></VpnLockIcon>
-                    </div>
-                  </Link>
-                )}
-
-                <div style={{ width: "20px", marginRight: "25px" }}>
-                  <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    style={{
-                      background: "transparent",
-                      boxShadow: "none",
-                    }}
+                      />
+                    </Button>
+                  </div>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
                   >
-                    <AssignmentRoundedIcon
-                      style={{
-                        height: "30px",
-                        width: "30px",
-                      }}
-                    />
-                  </Button>
-                </div>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <Link to={`edit/${note._id}`} style={{ color: "black" }}>
-                    <MenuItem>Edit Note</MenuItem>
-                  </Link>
-                  <MenuItem onClick={handleClose}>Share Note</MenuItem>
-                  {/* <MenuItem onClick={changeVisible}>
+                    <Link to={`edit/${note._id}`} style={{ color: "black" }}>
+                      <MenuItem>Edit Note</MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleClose}>Share Note</MenuItem>
+                    {/* <MenuItem onClick={changeVisible}>
                     Change Note Visibility
                   </MenuItem> */}
-                  <MenuItem onClick={handleClose}>Delete Note</MenuItem>
-                </Menu>
+                    <MenuItem onClick={handleClose}>Delete Note</MenuItem>
+                  </Menu>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </FadeIn>
     </div>
   );
 }

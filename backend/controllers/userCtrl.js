@@ -23,9 +23,14 @@ const userCtrl = {
             const user2 = await Users.findOne({name})
             if(user2) return res.status(400).json({msg:"This username already exists."})
 
+            if(name.length > 11){
+                return res.status(400).json({msg: "Username must be less than 11 characters."})
+            }
+
             if(password.length < 6){
                 return res.status(400).json({msg: "Password must be more than 6 characters."})
             }
+
 
             const passwordHash = await bcrypt.hash(password, 12)
        

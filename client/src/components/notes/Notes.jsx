@@ -227,6 +227,7 @@ function Notes() {
                     fontSize: "20px",
                   }}
                 >
+                  {/* NEED TO MAKE SURE THIS IS 11 CHARACTERS MAX!!!! */}
                   {note.name}
 
                   {note.isShared ? (
@@ -291,7 +292,6 @@ function Notes() {
                       </div>
                     </Link>
                   )}
-
                   <div style={{ width: "20px", marginRight: "25px" }}>
                     <Link to={`/delNote/${note._id}`}>
                       <DeleteForeverIcon

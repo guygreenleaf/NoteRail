@@ -70,10 +70,7 @@ function SideBar() {
   };
   return (
     <div className="SideBar">
-      <div
-        className="logo"
-        style={{ marginTop: "25px", marginBottom: "100px" }}
-      >
+      <div className="logo" style={{ marginTop: "25px" }}>
         <ul>{userLink()}</ul>
         {/* <h1>
           <Link
@@ -105,8 +102,9 @@ function SideBar() {
         > */}
         <SettingsIcon
           style={{
-            height: "40px",
-            width: "40px",
+            height: "30px",
+            width: "30px",
+            marginBottom: "20px",
           }}
           className="setIcon"
           onClick={handleClick}
@@ -184,17 +182,18 @@ function SideBar() {
           aria-haspopup="true"
           onClick={handleClick}
         > */}
-
-        <AddToPhotosIcon
-          style={{
-            height: "40px",
-            width: "40px",
-            marginTop: "100px",
-            color: "#282F36",
-          }}
-          className="setIcon"
-          onClick={(event) => (window.location.href = "/public")}
-        ></AddToPhotosIcon>
+        <Link to="/create">
+          <AddToPhotosIcon
+            style={{
+              height: "40px",
+              width: "40px",
+              marginTop: "100px",
+              color: "#282F36",
+            }}
+            className="setIcon"
+            onClick={(event) => (window.location.href = "/create")}
+          ></AddToPhotosIcon>
+        </Link>
       </div>
     </div>
   );

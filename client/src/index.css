@@ -109,6 +109,7 @@
 }
 ::-webkit-scrollbar {
   width: 10px;
+  cursor: pointer;
 }
 ::-webkit-scrollbar-track {
   background: transparent;

@@ -3,7 +3,7 @@ import SideBar from "../header/SideBar";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 function EditNote() {
   const [note, setNotes] = useState({
@@ -15,6 +15,7 @@ function EditNote() {
   });
   const [token, setToken] = useState("");
 
+  const history = useHistory();
   let { id } = useParams();
 
   const getNote = async (token) => {
@@ -68,33 +69,32 @@ function EditNote() {
                   className="col s12"
                   style={{ display: "flex", justifyContent: "center" }}
                 >
-                  <Link to={"/notes"}>
-                    <button
-                      onClick={async () => {
-                        const bigtoken = localStorage.getItem("tokenStore");
-                        await Axios.put(
-                          `api/notes/updateVisibility/${note._id}`,
-                          {
-                            headers: { Authorization: bigtoken },
-                          }
-                        );
-                      }}
-                      style={{
-                        width: "135px",
-                        height: "45px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        marginTop: "1rem",
-                        background:
-                          "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-                        color: "black",
-                        fontWeight: "900",
-                      }}
-                      className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                    >
-                      Confirm
-                    </button>
-                  </Link>
+                  <button
+                    onClick={async () => {
+                      const bigtoken = localStorage.getItem("tokenStore");
+                      await Axios.put(
+                        `api/notes/updateVisibility/${note._id}`,
+                        {
+                          headers: { Authorization: bigtoken },
+                        }
+                      );
+                      history.push("/");
+                    }}
+                    style={{
+                      width: "135px",
+                      height: "45px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem",
+                      background:
+                        "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                      color: "black",
+                      fontWeight: "900",
+                    }}
+                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  >
+                    Confirm
+                  </button>
 
                   <Link to={"/notes"}>
                     <button

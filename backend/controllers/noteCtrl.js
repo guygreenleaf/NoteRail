@@ -20,6 +20,8 @@ const noteCtrl = {
     }, 
     createNote: async(req, res) =>{
         try {
+
+
             const {title, content, date} = req.body;
             const newNote = new Notes({
                 title,
@@ -30,6 +32,14 @@ const noteCtrl = {
                 isShared: false
             })
             
+            
+            if(title.length > 20){
+                return res.status(400).json({msg: "Title must be less than 20 characters."})
+            }
+
+            if(content.length > 50000){
+                return res.status(400).json({msg: "Content must be less than 50,000 characters."})
+            }
             await newNote.save()
             res.json({msg: "New Note successfully created!"})
             

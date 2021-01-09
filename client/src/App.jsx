@@ -14,6 +14,7 @@ import PublicNotes from "./components/notes/PublicNotes";
 import EditNote from "./components/notes/EditNote";
 import DeleteNote from "./components/notes/DeleteNote";
 import EditContent from "./components/notes/EditContent";
+import CreateNote from "./components/notes/CreateNote";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -85,6 +86,12 @@ function App() {
           <Route
             path="/public"
             component={isLogged ? PublicNotes : Landing}
+            exact
+          />
+
+          <Route
+            path="/create"
+            component={isLogged ? CreateNote : Landing}
             exact
           />
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />

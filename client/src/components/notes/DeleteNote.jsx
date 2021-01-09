@@ -3,7 +3,7 @@ import SideBar from "../header/SideBar";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 function DeleteNote() {
   const [note, setNotes] = useState({
@@ -14,26 +14,8 @@ function DeleteNote() {
     isShared: "",
   });
   const [token, setToken] = useState("");
-
+  const history = useHistory();
   let { id } = useParams();
-
-  //   console.log(id);
-  //   const getNote = async (token) => {
-  //     const res = await Axios.get(`api/notes/${id}`, {
-  //       headers: { Authorization: token },
-  //     });
-  //     // console.log(res.data);
-  //     setNotes(res.data);
-  //   };
-
-  //   console.log(note);
-  //   useEffect(() => {
-  //     const token = localStorage.getItem("tokenStore");
-  //     setToken(token);
-  //     if (token) {
-  //       getNote(token);
-  //     }
-  //   }, []);
 
   return (
     <div>
@@ -76,6 +58,7 @@ function DeleteNote() {
                         await Axios.delete(`api/notes/${id}`, {
                           headers: { Authorization: bigtoken },
                         });
+                        history.push();
                       }}
                       style={{
                         width: "135px",

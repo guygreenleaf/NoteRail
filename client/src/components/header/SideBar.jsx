@@ -40,6 +40,7 @@ function SideBar() {
     return (
       <li>
         <img
+          className="userImage"
           src={user.avatar}
           alt="name"
           style={{
@@ -55,10 +56,11 @@ function SideBar() {
           }}
         />
         <h3
+          className="bigName"
           style={{
             textAlign: "center",
             marginTop: "10px",
-            color: "black",
+
             fontWeight: "400",
             letterSpacing: "2px",
           }}
@@ -87,12 +89,12 @@ function SideBar() {
         </h1> */}
       </div>
       <div
-        className="settingsIcon"
+        className="settingsIconSidebar"
         style={{
           display: "flex",
           justifyContent: "center",
-          marginLeft: "100px",
-          marginRight: "100px",
+          // marginLeft: "100px",
+          // marginRight: "100px",
         }}
       >
         {/* <Button
@@ -118,7 +120,7 @@ function SideBar() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>Upload Avatar</MenuItem>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>
@@ -127,18 +129,16 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginLeft: "100px",
-          marginRight: "100px",
+          // marginLeft: "100px",
+          // marginRight: "100px",
         }}
       >
         <HomeIcon
           style={{
             height: "40px",
             width: "40px",
-            marginTop: "100px",
-            color: "#282F36",
           }}
-          className="setIcon"
+          className="homeIcon"
           onClick={(event) => (window.location.href = "/notes")}
         />
       </div>
@@ -147,8 +147,8 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginLeft: "100px",
-          marginRight: "100px",
+          // marginLeft: "100px",
+          // marginRight: "100px",
         }}
       >
         {/* <Button
@@ -161,10 +161,8 @@ function SideBar() {
           style={{
             height: "40px",
             width: "40px",
-            marginTop: "100px",
-            color: "#282F36",
           }}
-          className="setIcon"
+          className="publicIcon"
           onClick={(event) => (window.location.href = "/public")}
         ></PublicRoundedIcon>
       </div>
@@ -173,8 +171,8 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginLeft: "100px",
-          marginRight: "100px",
+          // marginLeft: "100px",
+          // marginRight: "100px",
         }}
       >
         {/* <Button
@@ -182,15 +180,13 @@ function SideBar() {
           aria-haspopup="true"
           onClick={handleClick}
         > */}
-        <Link to="/create">
+        <Link to="/create" className="addIconLink">
           <AddToPhotosIcon
             style={{
               height: "40px",
               width: "40px",
-              marginTop: "100px",
-              color: "#282F36",
             }}
-            className="setIcon"
+            className="addIcon"
             onClick={(event) => (window.location.href = "/create")}
           ></AddToPhotosIcon>
         </Link>

@@ -80,7 +80,7 @@
 .SideBar:hover {
   opacity: 1;
 }
-.settingsIcon:hover {
+.setIcon:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
@@ -89,10 +89,67 @@
   cursor: pointer;
   transform: scale(1.1);
 }
+
+.homeIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.publicIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.addIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.bigName {
+  color: black;
+}
+.homeIcon {
+  color: #282f36;
+  margin-top: 100px;
+}
+.publicIcon {
+  color: #282f36;
+  margin-top: 100px;
+}
+.addIcon {
+  color: #282f36;
+}
+
+.addIconLink {
+  margin-top: 100px;
+}
+
+.welcomeCard {
+  position: absolute;
+  margin-top: 250px;
+  margin-right: 150px;
+}
+
 @media only screen and (max-width: 1026px) {
   .SideBar {
-    display: none;
+    background: transparent;
   }
+  .welcomeCard {
+    margin-left: 400px;
+    min-width: 500px;
+    margin-top: 50px;
+  }
+  .settingsIconSidebar {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .userImage {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  /* .SideBar{
+    scroll
+  } */
   .YEP {
     justify-content: center;
     margin-right: 200px;
@@ -100,11 +157,74 @@
   .card {
     margin-right: 150px;
   }
+
+  .bigName {
+    color: white;
+  }
+
+  .setIcon {
+    color: white;
+  }
+
+  .homeIcon {
+    color: white;
+    cursor: pointer;
+  }
+  .publicIcon {
+    color: white;
+  }
+  .addIcon {
+    color: white;
+  }
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 675px) {
   .SideBar {
-    display: none;
+    background: transparent;
+  }
+
+  .settingsIconSidebar {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .userImage {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  /* .SideBar{
+    scroll
+  } */
+  .YEP {
+    justify-content: center;
+    margin-right: 200px;
+  }
+  .card {
+    margin-right: 150px;
+  }
+
+  .bigName {
+    color: white;
+  }
+
+  .setIcon {
+    color: white;
+  }
+
+  .homeIcon {
+    color: white;
+    margin-top: 0px;
+  }
+  .publicIcon {
+    color: white;
+    margin-top: 15px;
+  }
+  .addIcon {
+    color: white;
+  }
+
+  .addIconLink {
+    margin-top: 15px;
   }
 }
 ::-webkit-scrollbar {

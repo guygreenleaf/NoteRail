@@ -15,6 +15,7 @@ import EditNote from "./components/notes/EditNote";
 import DeleteNote from "./components/notes/DeleteNote";
 import EditContent from "./components/notes/EditContent";
 import CreateNote from "./components/notes/CreateNote";
+import NotesRules from "./components/notes/NotesRules";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -81,6 +82,11 @@ function App() {
           <Route
             path="/profile"
             component={isLogged ? Profile : Landing}
+            exact
+          />
+          <Route
+            path="/rules"
+            component={isLogged ? NotesRules : Landing}
             exact
           />
           <Route

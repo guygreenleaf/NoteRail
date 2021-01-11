@@ -93,9 +93,11 @@ function CreateNote() {
       <div
         className="YEP"
         style={{
+          // width: "70%",
+          // height: "40%",
           display: "flex",
           flexWrap: "wrap",
-          marginLeft: "40%",
+          marginLeft: "20%",
           marginTop: "10%",
           marginRight: "20%",
           //   height: "100vh",
@@ -104,8 +106,8 @@ function CreateNote() {
         <div
           className="card"
           style={{
-            width: "600px",
-            height: "550px",
+            width: "75%",
+            height: "625px",
             boxShadow: "2px black",
             background:
               "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
@@ -156,12 +158,17 @@ function CreateNote() {
               type="text"
               style={{
                 border: "1px solid black",
+                borderRadius: "11px",
+                background: "white",
+                fontWeight: "50px",
+                fontSize: "40px",
               }}
               value={note.title}
               id="title"
               name="title"
               required
               onChange={onChangeInput}
+
               //   onClick={onClickTitle}
             />
             {/* </h2> */}
@@ -190,11 +197,11 @@ function CreateNote() {
                 height: "200px",
                 //   maxHeight: "300px",
                 overflowY: "break-word",
-                fontSize: "18px",
+                fontSize: "40px",
                 resize: "none",
                 border: "1px solid black",
-
-                // background: "white",
+                borderRadius: "11px",
+                background: "white",
                 // border: "none",
               }}
               onChange={onChangeInput}
@@ -203,11 +210,35 @@ function CreateNote() {
 
             <div
               className="col s12"
-              style={{
-                display: "flex",
-                //   justifyContent: "right",
-              }}
+              style={
+                {
+                  // display: "flex",
+                  //   justifyContent: "right",
+                }
+              }
             >
+              <button
+                style={{
+                  width: "135px",
+                  minWidth: "130px",
+                  height: "50px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  marginTop: "1rem",
+                  background:
+                    "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+
+                  color: "black",
+                  fontWeight: "900",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  // marginLeft: "250px",
+                }}
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                type="submit"
+              >
+                Create Note
+              </button>
               <Link to={"/notes"}>
                 <button
                   // onClick={async () => {
@@ -234,25 +265,7 @@ function CreateNote() {
               </Link>
 
               {/* <Link to={"/notes"}> */}
-              <button
-                style={{
-                  width: "135px",
-                  height: "50px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px",
-                  marginTop: "1rem",
-                  background:
-                    "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
 
-                  color: "black",
-                  fontWeight: "900",
-                  marginLeft: "250px",
-                }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                type="submit"
-              >
-                Create Note
-              </button>
               {/* </Link> */}
             </div>
           </form>

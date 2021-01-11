@@ -120,7 +120,9 @@ function SideBar() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Upload Avatar</MenuItem>
+          <Link to="/uploadProfile" style={{ color: "black" }}>
+            <MenuItem>Upload Avatar</MenuItem>
+          </Link>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>

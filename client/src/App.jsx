@@ -16,6 +16,7 @@ import DeleteNote from "./components/notes/DeleteNote";
 import EditContent from "./components/notes/EditContent";
 import CreateNote from "./components/notes/CreateNote";
 import NotesRules from "./components/notes/NotesRules";
+import UploadAvatar from "./components/notes/UploadAvatar";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -100,6 +101,12 @@ function App() {
             component={isLogged ? CreateNote : Landing}
             exact
           />
+
+          <Route
+            path="/uploadProfile"
+            component={isLogged ? UploadAvatar : Landing}
+          />
+
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />
           <Route
             path="/delNote/:id"

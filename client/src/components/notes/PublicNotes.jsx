@@ -73,7 +73,7 @@ function PublicNotes() {
           >
             {notes.length === 0 ? (
               <div
-                className="cocker"
+                className="docker"
                 style={{ marginLeft: "300px", marginTop: "100px" }}
               >
                 <FadeIn transitionDuration="1100">

@@ -164,7 +164,12 @@ function PublicNotes() {
                       fontSize: "20px",
                     }}
                   >
-                    {note.name}
+                    <Link
+                      style={{ color: "black" }}
+                      to={`/user/${note.user_id}`}
+                    >
+                      {note.name}
+                    </Link>
                   </div>
                 </div>
               ))

@@ -16,12 +16,13 @@ module.exports = async function(req, res, next){
 
         } //1mb
 
-        if(file.mimetype !== 'image/jpeg' && file.mimetype !== '/image.png'){
+        if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png'){
             removeTmp(file.tempFilePath)
             return res.status(400).json({msg: "File format not allowed. Allowable formats: jpeg, png"})
 
 
         }
+        console.log("files checked")
 
         next()
     } catch (err) {

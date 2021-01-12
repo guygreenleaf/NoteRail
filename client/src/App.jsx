@@ -106,7 +106,7 @@ function App() {
             path="/uploadProfile"
             component={isLogged ? UploadAvatar : Landing}
           />
-
+          <Route path="/user/:id" component={isLogged ? Profile : Landing} />
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />
           <Route
             path="/delNote/:id"

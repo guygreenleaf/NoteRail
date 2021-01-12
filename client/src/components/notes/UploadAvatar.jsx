@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import SettingsIcon from "@material-ui/icons/Settings";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import Draggable from "react-draggable";
-import TimeAgo from "react-timeago";
-import englishStrings from "react-timeago/lib/language-strings/en";
-import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
+
 import SideBar from "../header/SideBar";
-import ScreenShareIcon from "@material-ui/icons/ScreenShare";
-import StopScreenShareIcon from "@material-ui/icons/StopScreenShare";
+
 import {
   MDBContainer,
   MDBBtn,
@@ -25,11 +16,9 @@ import {
   MDBCard,
   MDBCardBody,
 } from "mdbreact";
-import PublicIcon from "@material-ui/icons/Public";
-import VpnLockIcon from "@material-ui/icons/VpnLock";
+
 import FadeIn from "react-fade-in";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { useSelector, useDispatch } from "react-redux";
 
 const initialState = {
   err: "",
@@ -41,6 +30,11 @@ function UploadAvatar() {
   const { err, success } = data;
 
   const [token, setToken] = useState("");
+  const [avatar, setAvatar] = useState(false);
+  const auth = useSelector((state) => state.auth);
+  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const { user, isAdmin } = auth;
 
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
@@ -54,11 +48,17 @@ function UploadAvatar() {
 
       if (!file)
         return setData({ ...data, err: "No file was uploaded.", success: "" });
+
+      if (file.size > 1024 * 1024) {
+        return setData({ ...data, err: "File size too large", success: "" });
+      }
+
       // POSSIBLY ADD GIF FUNCTIONALITY
       if (file.type !== "image/jpeg" && file.type !== "image/png")
         return setData({
           ...data,
-          err: "File format is incorrect.",
+          err:
+            "Incorrect file format. Allowed types: .jpeg , .png (gifs coming soon!)",
           success: "",
         });
 
@@ -71,9 +71,37 @@ function UploadAvatar() {
           Authorization: token,
         },
       });
+      setData({
+        ...data,
+        err: "",
+        success: "Profile picture successfully uploaded!",
+      });
+      setAvatar(res.data.url);
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: "" });
     }
+  };
+
+  const updateInfor = () => {
+    try {
+      axios.patch(
+        "/user/update",
+        {
+          avatar: avatar ? avatar : user.avatar,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      setData({ ...data, err: "", success: "Updated Success!" });
+    } catch (err) {
+      setData({ ...data, err: err.response.data.msg, success: "" });
+    }
+  };
+
+  const handleUpdate = () => {
+    if (avatar) updateInfor();
   };
   return (
     <div>
@@ -95,7 +123,23 @@ function UploadAvatar() {
                     Your picture will automatically be scaled appropriately.
                   </h3>
                 </div>
-
+                <h3 style={{ color: "red" }}>{err}</h3>
+                <h3 style={{ color: "red" }}>{success}</h3>
+                <img
+                  src={avatar ? avatar : user.avatar}
+                  alt=""
+                  style={{
+                    display: "block",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    // marginLeft: "19px",
+                    border: "2px solid black",
+                    borderRadius: "75px",
+                    boxShadow: "2px 2px grey",
+                    height: "150px",
+                    width: "150px",
+                  }}
+                />
                 <div>
                   {" "}
                   <input
@@ -105,6 +149,26 @@ function UploadAvatar() {
                     onChange={changeAvatar}
                   ></input>
                 </div>
+                <button
+                  onClick={handleUpdate}
+                  style={{
+                    width: "135px",
+                    marginLeft: "450px",
+                    // display: "flex",
+                    // justifyContent: "right",
+                    height: "45px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem",
+                    background:
+                      "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+                    color: "black",
+                    fontWeight: "900",
+                  }}
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                  Confirm
+                </button>
               </MDBCardBody>
             </MDBCard>
           </MDBBox>

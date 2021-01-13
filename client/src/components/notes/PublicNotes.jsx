@@ -27,10 +27,15 @@ function PublicNotes() {
     setNotes(res.data);
   };
 
+  // const getNotes = () => {
+  //   const token = localStorage.getItem()
+  // }
+
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
     setToken(token);
     if (token) {
+      console.log(token);
       getNotes(token);
     }
   }, []);
@@ -164,12 +169,19 @@ function PublicNotes() {
                       fontSize: "20px",
                     }}
                   >
+                    {/* <p
+                      style={{ color: "black", cursor: "pointer" }}
+                      onClick={(event) =>
+                        (window.location.href = "/public/" + note.user_id)
+                      }
+                    > */}
                     <Link
-                      style={{ color: "black" }}
-                      to={`/user/${note.user_id}`}
+                      to={`/userNotes/${note.user_id}`}
+                      style={{ color: "Black" }}
                     >
                       {note.name}
                     </Link>
+                    {/* </p> */}
                   </div>
                 </div>
               ))

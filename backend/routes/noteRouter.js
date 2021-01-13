@@ -7,7 +7,10 @@ router.route('/')
     .post(auth, noteCtrl.createNote)
     
 router.route('/public')
-    .get(auth, noteCtrl.getAllNotes)
+    .get(noteCtrl.getAllNotes)
+
+router.route('/public/:user_id')
+    .get(noteCtrl.getAllNotes)
 
 router.route('/updateVisibility/:id')
     .put(  noteCtrl.updateVisibility)

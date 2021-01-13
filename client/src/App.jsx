@@ -80,11 +80,7 @@ function App() {
             exact
           />
           <Route path="/notes" component={isLogged ? Notes : Landing} />
-          <Route
-            path="/profile"
-            component={isLogged ? Profile : Landing}
-            exact
-          />
+
           <Route
             path="/rules"
             component={isLogged ? NotesRules : Landing}
@@ -93,6 +89,11 @@ function App() {
           <Route
             path="/public"
             component={isLogged ? PublicNotes : Landing}
+            exact
+          />
+          <Route
+            path="/userNotes/:user_id"
+            component={isLogged ? Profile : Landing}
             exact
           />
 
@@ -106,7 +107,7 @@ function App() {
             path="/uploadProfile"
             component={isLogged ? UploadAvatar : Landing}
           />
-          <Route path="/user/:id" component={isLogged ? Profile : Landing} />
+          {/* <Route path="/usersNotes" component={isLogged ? Profile : Landing} /> */}
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />
           <Route
             path="/delNote/:id"

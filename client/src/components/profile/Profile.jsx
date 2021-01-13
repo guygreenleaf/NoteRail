@@ -81,23 +81,19 @@ function Profile() {
         ) : (
           <div
             style={{
-              height: "50px",
+              height: "6vh",
               width: "18vw",
               marginLeft: "250px",
-              marginBottom: "45px",
+              marginBottom: "50px",
               marginTop: "30px",
-              border: "1px solid black",
-              borderRadius: "30px",
-              background:
-                "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
+              // border: "1px solid black",
+              // borderRadius: "30px",
+              // background:
+              //   "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
             }}
           >
             <h3
-              style={{
-                marginLeft: "30px",
-                marginTop: "9px",
-                fontWeight: "500",
-              }}
+              className="profName"
             >
               {notes[0].name}'s Public Notes
             </h3>

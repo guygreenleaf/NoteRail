@@ -57,7 +57,9 @@ function PublicNotes() {
       pubiNotes.push(notes);
     }
   }
+
   console.log(pubiNotes);
+  
   return (
     <div>
       <FadeIn transitionDuration="800">

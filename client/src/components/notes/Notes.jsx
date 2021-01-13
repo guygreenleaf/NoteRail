@@ -1,31 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../header/Header";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
+
+import { Link } from "react-router-dom";
+
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import SettingsIcon from "@material-ui/icons/Settings";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import Draggable from "react-draggable";
+
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import SideBar from "../header/SideBar";
-import ScreenShareIcon from "@material-ui/icons/ScreenShare";
-import StopScreenShareIcon from "@material-ui/icons/StopScreenShare";
-import {
-  MDBContainer,
-  MDBBtn,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter,
-  MDBIcon,
-  MDBBox,
-  MDBCard,
-  MDBCardBody,
-} from "mdbreact";
+
+import { MDBBox, MDBCard, MDBCardBody } from "mdbreact";
 import PublicIcon from "@material-ui/icons/Public";
 import VpnLockIcon from "@material-ui/icons/VpnLock";
 import FadeIn from "react-fade-in";
@@ -34,26 +20,6 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 const formatter = buildFormatter(englishStrings);
 function Notes() {
   const [notes, setNotes] = useState([]);
-  const [token, setToken] = useState("");
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-    date: "",
-    id: "",
-    isShared: "",
-  });
-  const [modalVis, isVisible] = useState(false);
-
-  const [clicked, setClick] = useState(false);
-
-  const handleIconClick = (id) => {
-    setClick(true);
-  };
-
-  // const toggleModal = () => {
-  //   isVisible(!modalVis);
-  //   handleClose();
-  // };
 
   const getNotes = async (token) => {
     const res = await axios.get("api/notes", {
@@ -64,7 +30,6 @@ function Notes() {
 
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
-    setToken(token);
     if (token) {
       getNotes(token);
     }
@@ -72,36 +37,10 @@ function Notes() {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  ///FIGURE THIS SHIT OUT NOW W W W W W
-
-  const changeVisible = (e) => {
-    const token = localStorage.getItem("tokenStore");
-    // const res = await axios.get("api/notes/", {
-    //   headers: { Authorization: token },
-    // });
-    console.log(note.id);
-    // console.log(res.data);
-    // console.log();
-    // if (token) {
-    //   const { title, content, date, id, isShared } = note;
-    //   await axios.put(`/api/notes/updateVisibility${id}`, {
-    //     headers: { Authorization: token },
-    //   });
-    // }
-  };
-  // console.log(notes);
-
-  const testerFunc = (em) => {
-    console.log(em);
-  };
   return (
     <div>
       <FadeIn transitionDuration="800">
@@ -186,7 +125,6 @@ function Notes() {
                     position: "relative",
                     color: "black",
                     margin: "15px",
-                    // cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     overflow: "hidden",
@@ -261,7 +199,6 @@ function Notes() {
                         style={{
                           fontSize: "15px",
                           letterSpacing: "1px",
-                          // display: "flex",
                           justifyContent: "left",
                           marginLeft: "125px",
                         }}
@@ -284,22 +221,11 @@ function Notes() {
                       fontSize: "20px",
                     }}
                   >
-                    {/* NEED TO MAKE SURE THIS IS 11 CHARACTERS MAX!!!! */}
                     {note.name}
 
                     {note.isShared ? (
                       <Link to={`/${note._id}`}>
-                        <div
-                        // onClick={async () => {
-                        //   const bigtoken = localStorage.getItem("tokenStore");
-                        //   await axios.put(
-                        //     `api/notes/updateVisibility/${note._id}`,
-                        //     {
-                        //       headers: { Authorization: bigtoken },
-                        //     }
-                        //   );
-                        // }}
-                        >
+                        <div>
                           <PublicIcon
                             icon="edit"
                             className="screenIcon"
@@ -312,32 +238,10 @@ function Notes() {
                             }}
                           />
                         </div>
-                        {/* <p
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "800",
-                        height: 0,
-                        cursor: "default",
-                        color: "black",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      Edit
-                    </p> */}
                       </Link>
                     ) : (
                       <Link to={`/${note._id}`}>
-                        <div
-                        // onClick={async () => {
-                        //   const bigtoken = localStorage.getItem("tokenStore");
-                        //   await axios.put(
-                        //     `api/notes/updateVisibility/${note._id}`,
-                        //     {
-                        //       headers: { Authorization: bigtoken },
-                        //     }
-                        //   );
-                        // }}
-                        >
+                        <div>
                           <VpnLockIcon
                             className="screenIcon"
                             style={{
@@ -372,9 +276,6 @@ function Notes() {
                         <MenuItem>Edit Note</MenuItem>
                       </Link>
                       <MenuItem onClick={handleClose}>Share Note</MenuItem>
-                      {/* <MenuItem onClick={changeVisible}>
-                    Change Note Visibility
-                  </MenuItem> */}
                       <MenuItem onClick={handleClose}>Delete Note</MenuItem>
                     </Menu>
                   </div>

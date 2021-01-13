@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import SideBar from "../header/SideBar";
 
-import {
-  MDBContainer,
-  MDBBtn,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter,
-  MDBIcon,
-  MDBBox,
-  MDBCard,
-  MDBCardBody,
-} from "mdbreact";
+import { MDBBox, MDBCard, MDBCardBody } from "mdbreact";
 
 import FadeIn from "react-fade-in";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const initialState = {
   err: "",
@@ -32,9 +20,7 @@ function UploadAvatar() {
   const [token, setToken] = useState("");
   const [avatar, setAvatar] = useState(false);
   const auth = useSelector((state) => state.auth);
-  const users = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-  const { user, isAdmin } = auth;
+  const { user } = auth;
 
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
@@ -132,7 +118,6 @@ function UploadAvatar() {
                     display: "block",
                     marginLeft: "auto",
                     marginRight: "auto",
-                    // marginLeft: "19px",
                     border: "2px solid black",
                     borderRadius: "75px",
                     boxShadow: "2px 2px grey",
@@ -154,8 +139,6 @@ function UploadAvatar() {
                   style={{
                     width: "135px",
                     marginLeft: "450px",
-                    // display: "flex",
-                    // justifyContent: "right",
                     height: "45px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",

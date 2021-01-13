@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../header/Header";
-import { Link, useParams } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import SettingsIcon from "@material-ui/icons/Settings";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import Draggable from "react-draggable";
+import { useParams } from "react-router-dom";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -18,50 +10,19 @@ import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 const formatter = buildFormatter(englishStrings);
 function Profile() {
   const [notes, setNotes] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("tokenStore"));
+  const [token] = useState(localStorage.getItem("tokenStore"));
   const parms = useParams();
-  // const getNotes = (token) => {
-  //   console.log(token);
-  // };
-  // useEffect(() => {
-  //   const token = localStorage.getItem("tokenStore");
-  //   setToken(token);
-  //   if (token) {
-  //     getNotes(token);
-  //     // console.log(token);
-  //   }
-  // }, []);
-
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
-  // let pubiNotes = [];
-
-  // for (const i in notes) {
-  //   if (notes[i].isShared === true) {
-  //     pubiNotes.push(notes);
-  //   }
-  // }
-  // console.log(pubiNotes);
+  const parmid = useParams().id;
 
   useEffect(() => {
-    getNote(token);
-  }, [token]);
-
-  const getNote = async (token) => {
-    const res = await axios.get("/api/notes/public/:id", {
-      headers: { Authorization: token },
-    });
-    setNotes(res.data);
-    // console.log(userNotes);
-  };
+    const getNote = async () => {
+      const res = await axios.get(`/api/notes/public/${parmid}`, {
+        headers: { Authorization: token },
+      });
+      setNotes(res.data);
+    };
+    getNote();
+  }, [parmid, token]);
 
   const bigNotes = [];
   let i = 0;
@@ -86,17 +47,9 @@ function Profile() {
               marginLeft: "250px",
               marginBottom: "50px",
               marginTop: "30px",
-              // border: "1px solid black",
-              // borderRadius: "30px",
-              // background:
-              //   "linear-gradient(90deg, rgba(238, 174, 202, 1) 9%, rgba(122, 183, 255, 1) 64%)",
             }}
           >
-            <h3
-              className="profName"
-            >
-              {notes[0].name}'s Public Notes
-            </h3>
+            <h3 className="profName">{bigNotes[0].name}'s Public Notes</h3>
           </div>
         )}
 

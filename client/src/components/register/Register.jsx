@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 
@@ -17,9 +17,6 @@ function Register() {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
     setErr("");
-  };
-  const clearState = () => {
-    setUser({ name: "", email: "", password: "", password2: "" });
   };
 
   const registerSubmit = async (e) => {
@@ -72,10 +69,7 @@ function Register() {
                 </p>
                 <h4 style={{ color: "red" }}>{err}</h4>
               </div>
-              <form
-                noValidate
-                onSubmit={registerSubmit} /*>onSubmit={this.onSubmit}*/
-              >
+              <form noValidate onSubmit={registerSubmit}>
                 <div className="input-field col s12">
                   <input
                     required
@@ -84,9 +78,6 @@ function Register() {
                     name="name"
                     id="register-name"
                     type="text"
-                    // className={classnames("", {
-                    //   invalid: errors.username,
-                    // })}
                   />
                   <label htmlFor="name">Username</label>
                 </div>
@@ -95,13 +86,9 @@ function Register() {
                     required
                     onChange={onChange}
                     value={user.email}
-                    // error={errors.email}
                     id="email"
                     type="email"
                     name="email"
-                    //     className={classnames("", {
-                    //     invalid: errors.email
-                    //   })}
                   />
                   <label htmlFor="email">Email</label>
                 </div>
@@ -110,13 +97,9 @@ function Register() {
                     required
                     onChange={onChange}
                     value={user.password}
-                    // error={errors.password}
                     id="password"
                     type="password"
                     name="password"
-                    //     className={classnames("", {
-                    //     invalid: errors.password
-                    //   })}
                   />
                   <label htmlFor="password">Password</label>
                 </div>
@@ -125,13 +108,9 @@ function Register() {
                     required
                     onChange={onChange}
                     value={user.password2}
-                    // error={errors.password2}
                     id="password2"
                     type="password"
                     name="password2"
-                    //     className={classnames("", {
-                    //     invalid: errors.password2
-                    //   })}
                   />
                   <label htmlFor="password2">Confirm Password</label>
                 </div>
@@ -163,16 +142,4 @@ function Register() {
   );
 }
 
-// Register.propTypes = {
-//   registerUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired,
-//   errors: PropTypes.object.isRequired,
-// };
-
-// const mapStateToProps = (state) => ({
-//   auth: state.auth,
-//   errors: state.errors,
-// });
-
-// export default connect(mapStateToProps, { registerUser })(withRouter(Register));
 export default Register;

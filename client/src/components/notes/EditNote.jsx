@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../header/SideBar";
-import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
@@ -13,27 +13,23 @@ function EditNote() {
     id: "",
     isShared: "",
   });
-  const [token, setToken] = useState("");
 
   const history = useHistory();
   let { id } = useParams();
 
-  const getNote = async (token) => {
-    const res = await Axios.get(`api/notes/${id}`, {
-      headers: { Authorization: token },
-    });
-    // console.log(res.data);
-    setNotes(res.data);
-  };
-
-  //   console.log(note);
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
-    setToken(token);
     if (token) {
-      getNote(token);
+      const getNote = async () => {
+        const res = await Axios.get(`api/notes/${id}`, {
+          headers: { Authorization: token },
+        });
+        // console.log(res.data);
+        setNotes(res.data);
+      };
+      getNote();
     }
-  }, []);
+  }, [id]);
 
   return (
     <div>

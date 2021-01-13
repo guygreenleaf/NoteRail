@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SideBar from "../header/SideBar";
-import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
 import { Link, useParams, useHistory } from "react-router-dom";
 
 function DeleteNote() {
-  const [note, setNotes] = useState({
-    title: "",
-    content: "",
-    date: "",
-    id: "",
-    isShared: "",
-  });
-  const [token, setToken] = useState("");
   const history = useHistory();
   let { id } = useParams();
 

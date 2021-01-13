@@ -1,40 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SideBar from "../header/SideBar";
-import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
+import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
-import Axios from "axios";
-import { Link, useParams, useHistory } from "react-router-dom";
 
-function EditNote() {
-  const [note, setNotes] = useState({
-    title: "",
-    content: "",
-    date: "",
-    id: "",
-    isShared: "",
-  });
-  const [token, setToken] = useState("");
+import { Link } from "react-router-dom";
 
-  const history = useHistory();
-  let { id } = useParams();
-
-  const getNote = async (token) => {
-    const res = await Axios.get(`api/notes/${id}`, {
-      headers: { Authorization: token },
-    });
-    // console.log(res.data);
-    setNotes(res.data);
-  };
-
-  //   console.log(note);
-  useEffect(() => {
-    const token = localStorage.getItem("tokenStore");
-    setToken(token);
-    if (token) {
-      getNote(token);
-    }
-  }, []);
-
+function NotesRules() {
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -122,4 +93,4 @@ function EditNote() {
   );
 }
 
-export default EditNote;
+export default NotesRules;

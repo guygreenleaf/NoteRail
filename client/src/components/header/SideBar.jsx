@@ -2,18 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
-import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import HomeIcon from "@material-ui/icons/Home";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 
-  const { user, isLogged } = auth;
+  const { user } = auth;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 

@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Header from "../header/Header";
 import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import SettingsIcon from "@material-ui/icons/Settings";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import Draggable from "react-draggable";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -18,7 +10,6 @@ import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 const formatter = buildFormatter(englishStrings);
 function PublicNotes() {
   const [notes, setNotes] = useState([]);
-  const [token, setToken] = useState("");
 
   const getNotes = async (token) => {
     const res = await axios.get("api/notes/public", {
@@ -27,28 +18,13 @@ function PublicNotes() {
     setNotes(res.data);
   };
 
-  // const getNotes = () => {
-  //   const token = localStorage.getItem()
-  // }
-
   useEffect(() => {
     const token = localStorage.getItem("tokenStore");
-    setToken(token);
     if (token) {
       console.log(token);
       getNotes(token);
     }
   }, []);
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   let pubiNotes = [];
 
@@ -59,7 +35,7 @@ function PublicNotes() {
   }
 
   console.log(pubiNotes);
-  
+
   return (
     <div>
       <FadeIn transitionDuration="800">
@@ -115,7 +91,6 @@ function PublicNotes() {
                     position: "relative",
                     color: "black",
                     margin: "15px",
-                    // cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     overflow: "hidden",
@@ -152,7 +127,6 @@ function PublicNotes() {
                       textAlign: "right",
                       color: "black",
                       fontSize: "16px",
-
                       marginBottom: "10px",
                     }}
                   >
@@ -171,19 +145,12 @@ function PublicNotes() {
                       fontSize: "20px",
                     }}
                   >
-                    {/* <p
-                      style={{ color: "black", cursor: "pointer" }}
-                      onClick={(event) =>
-                        (window.location.href = "/public/" + note.user_id)
-                      }
-                    > */}
                     <Link
                       to={`/userNotes/${note.user_id}`}
                       style={{ color: "Black" }}
                     >
                       {note.name}
                     </Link>
-                    {/* </p> */}
                   </div>
                 </div>
               ))

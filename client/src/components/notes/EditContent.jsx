@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  useHistory,
-  useParams,
-  BrowserRouter as Router,
-  Route,
-  Link,
-} from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import SideBar from "../header/SideBar";
 import axios from "axios";
 
@@ -14,7 +8,7 @@ function EditContent() {
     title: "",
     content: "",
   });
-  const [token, setToken] = useState(localStorage.getItem("tokenStore"));
+  const [token] = useState(localStorage.getItem("tokenStore"));
 
   const parms = useParams().id;
 
@@ -24,21 +18,18 @@ function EditContent() {
   const history = useHistory();
 
   useEffect(() => {
-    getNote(token);
-  }, []);
-
-  const getNote = async (token) => {
-    const res = await axios.get(`/api/notes/${parms}`, {
-      headers: { Authorization: token },
-    });
-    setNote({
-      title: res.data.title,
-      content: res.data.content,
-      date: new Date(res.data.date).toLocaleDateString(),
-      id: res.data._id,
-      isShared: res.data.isShared,
-    });
-  };
+    const getNote = async () => {
+      const res = await axios.get(`/api/notes/${parms}`, {
+        headers: { Authorization: token },
+      });
+      setNote({
+        title: res.data.title,
+        content: res.data.content,
+        date: new Date(res.data.date).toLocaleDateString(),
+      });
+    };
+    getNote();
+  }, [parms, token]);
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -50,7 +41,7 @@ function EditContent() {
     e.preventDefault();
     try {
       if (token) {
-        const { title, content, date, id, isShared } = note;
+        const { title, content, date } = note;
         const newNote = {
           title,
           content,
@@ -75,14 +66,11 @@ function EditContent() {
       <div
         className="YEP"
         style={{
-          // width: "70%",
-          // height: "40%",
           display: "flex",
           flexWrap: "wrap",
           marginLeft: "20%",
           marginTop: "10%",
           marginRight: "20%",
-          //   height: "100vh",
         }}
       >
         <div
@@ -97,7 +85,6 @@ function EditContent() {
             position: "relative",
             color: "black",
             margin: "15px",
-            // cursor: "pointer",
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
@@ -115,15 +102,6 @@ function EditContent() {
             Edit Note
           </h1>
           <form onSubmit={editNote} autoComplete="off">
-            {/* <h2
-            title={note.title}
-            style={{
-              textOverflow: "ellipsis",
-              paddingBottom: "1px",
-              fontSize: "26px",
-              fontWeight: 400,
-            }}
-          > */}
             <label
               htmlFor="title"
               style={{
@@ -143,17 +121,15 @@ function EditContent() {
                 borderRadius: "11px",
                 background: "white",
                 fontWeight: "50px",
-                fontSize: "40px",
+                fontSize: "30px",
               }}
               value={note.title}
               id="title"
               name="title"
               required
               onChange={onChangeInput}
-
-              //   onClick={onClickTitle}
             />
-            {/* </h2> */}
+
             <h4 style={{ color: "black", fontWeight: 500 }}>{err}</h4>
 
             <div className="text-wrapper" />
@@ -177,28 +153,17 @@ function EditContent() {
               required
               style={{
                 height: "200px",
-                //   maxHeight: "300px",
                 overflowY: "break-word",
-                fontSize: "40px",
+                fontSize: "28px",
                 resize: "none",
                 border: "1px solid black",
                 borderRadius: "11px",
                 background: "white",
-                // border: "none",
               }}
               onChange={onChangeInput}
-              //   onClick={onClickContent}
             ></textarea>
 
-            <div
-              className="col s12"
-              style={
-                {
-                  // display: "flex",
-                  //   justifyContent: "right",
-                }
-              }
-            >
+            <div className="col s12">
               <button
                 style={{
                   width: "135px",
@@ -214,21 +179,14 @@ function EditContent() {
                   fontWeight: "900",
                   display: "flex",
                   flexWrap: "wrap",
-                  // marginLeft: "250px",
                 }}
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 type="submit"
               >
-                Create Note
+                Edit Note
               </button>
               <Link to={"/notes"}>
                 <button
-                  // onClick={async () => {
-                  //   const bigtoken = localStorage.getItem("tokenStore");
-                  //   await Axios.put(`api/notes/updateVisibility/${note._id}`, {
-                  //     headers: { Authorization: bigtoken },
-                  //   });
-                  // }}
                   style={{
                     width: "135px",
                     height: "50px",
@@ -245,10 +203,6 @@ function EditContent() {
                   Cancel
                 </button>
               </Link>
-
-              {/* <Link to={"/notes"}> */}
-
-              {/* </Link> */}
             </div>
           </form>
         </div>

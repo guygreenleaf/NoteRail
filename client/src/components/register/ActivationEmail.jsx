@@ -10,7 +10,7 @@ function ActivationEmail() {
     if (activation_token) {
       const activationEmail = async () => {
         try {
-          const res = await axios.post("/user/activation", {
+          await axios.post("/user/activation", {
             activation_token,
           });
         } catch (err) {

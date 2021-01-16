@@ -4,9 +4,7 @@ import { useDispatch } from "react-redux";
 import { MDBCard, MDBCardBody, MDBFooter, MDBBox } from "mdbreact";
 import FadeIn from "react-fade-in";
 import Axios from "axios";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import Register from "./register/Register";
-// import ForgotPassword from "./ForgotPassword";
+
 import { dispatchLogin } from "../redux/actions/authAction";
 
 function Landing() {
@@ -14,14 +12,11 @@ function Landing() {
     email: "",
     password: "",
   });
-  // const auth = useSelector((state) => state.auth);
-  // console.log(auth);
-  // const { User, isLogged } = auth;
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [err, setErr] = useState("");
-  // const { email, password, err, success } = user;
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
@@ -29,15 +24,7 @@ function Landing() {
     setErr("");
   };
 
-  // const [modal, setModal] = useState(false);
 
-  // const modalClick = (e) => {
-  //   setModal(true);
-  // };
-
-  // const handleSubmit = () => {
-  //   console.log("we got a submit chief");
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

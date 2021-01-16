@@ -2,6 +2,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cloudinary": "^1.23.0",
+    "concurrently": "^5.3.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -24,7 +25,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "start": "server.js",
+    "server": "nodemon server.js",
+    "client": "cd client && yarn run start",
+    "client-install": "cd client && yarn install",
+    "server-install": "yarn install",
+    "install-all": "concurrently \"yarn run server-install\" \" yarn run client-install\"",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "cd client && yarn install && yarn run build" 
   },
   "keywords": [],
   "author": "",

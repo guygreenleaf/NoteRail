@@ -3,8 +3,8 @@ const auth = require('../middleware/auth')
 const noteCtrl = require('../controllers/noteCtrl')
 
 router.route('/')
-    .get(auth, noteCtrl.getNotes)
-    .post(auth, noteCtrl.createNote)
+    .get( noteCtrl.getNotes)
+    .post( noteCtrl.createNote)
     
 router.route('/public')
     .get(noteCtrl.getAllNotes)

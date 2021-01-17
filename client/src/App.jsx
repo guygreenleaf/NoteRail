@@ -25,37 +25,37 @@ import {
 } from "./redux/actions/authAction";
 
 function App() {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  // const dispatch = useDispatch();
+  // const token = useSelector((state) => state.token);
 
   const auth = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const firstLogin = localStorage.getItem("firstLogin");
-    if (firstLogin) {
-      const getToken = async () => {
-        const res = await axios.post("/user/refresh_token", null);
-        dispatch({ type: "GET_TOKEN", payload: res.data.access_token });
-      };
-      getToken();
-    }
-  }, [auth.isLogged, dispatch]);
+  // useEffect(() => {
+  //   const firstLogin = localStorage.getItem("firstLogin");
+  //   if (firstLogin) {
+  //     const getToken = async () => {
+  //       const res = await axios.post("/user/refresh_token", null);
+  //       dispatch({ type: "GET_TOKEN", payload: res.data.access_token });
+  //     };
+  //     getToken();
+  //   }
+  // }, [auth.isLogged, dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      const getUser = () => {
-        dispatch(dispatchLogin());
+  // useEffect(() => {
+  //   if (token) {
+  //     const getUser = () => {
+  //       dispatch(dispatchLogin());
 
-        return fetchUser(token).then((res) => {
-          dispatch(dispatchGetUser(res));
-        });
-      };
-      getUser();
-    }
-    return token;
-  }, [token, dispatch]);
+  //       return fetchUser(token).then((res) => {
+  //         dispatch(dispatchGetUser(res));
+  //       });
+  //     };
+  //     getUser();
+  //   }
+  //   return token;
+  // }, [token, dispatch]);
 
-  // console.log(auth);
+  // // console.log(auth);
   const { isLogged } = auth;
 
   return (

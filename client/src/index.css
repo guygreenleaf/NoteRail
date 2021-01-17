@@ -128,6 +128,13 @@
   margin-top: 250px;
   margin-right: 150px;
 }
+
+.rulesCard {
+  position: absolute;
+  margin-right: 150px;
+  margin-top: 100px;
+}
+
 .profName {
   font-size: 30px;
   margin-left: 30px;

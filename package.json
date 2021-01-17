@@ -28,11 +28,11 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && yarn run start",
-    "client-install": "cd client && yarn install",
-    "server-install": "yarn install",
+    "client-install": "cd client && npm install && yarn install",
+    "server-install": "npm install && yarn install",
     "install-all": "concurrently \"yarn run server-install\" \" yarn run client-install\"",
     "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "cd client && yarn install && yarn run build" 
+    "heroku-postbuild": "cd client && npm install && yarn install && yarn run build" 
   },
   "keywords": [],
   "author": "",

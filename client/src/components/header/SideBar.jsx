@@ -8,6 +8,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
 import HomeIcon from "@material-ui/icons/Home";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
+import ReportIcon from "@material-ui/icons/Report";
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 
@@ -191,6 +192,20 @@ function SideBar() {
           ></AddToPhotosIcon>
         </Link>
       </div>
+      {/* 
+      <div
+        className="reportBug"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          // marginLeft: "100px",
+          // marginRight: "100px",
+        }}
+      >
+        <Link to="/reportBug" className="reportLink">
+          <ReportIcon style={{ height: "35px", width: "35px" }}></ReportIcon>
+        </Link>
+      </div> */}
     </div>
   );
 }

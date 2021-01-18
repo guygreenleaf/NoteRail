@@ -86,13 +86,6 @@ const userCtrl = {
             const payload = {id: user._id, name: user.name}
             const token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
             const access_token = createAccessToken({id: user._id, name: user.name});
-            // // localStorage.setItem('token', token)
-            
-            // res.cookie('token', token, {
-            //     httpOnly: true,
-            //     path: '/user/refresh_token',
-            //     maxAge: 7*24*60*60*1000 //7 days
-            // })
 
             const refresh_token = createRefreshToken({id: user._id})
             res.cookie('refreshtoken', refresh_token, {
@@ -100,7 +93,6 @@ const userCtrl = {
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7 days
             })
-            // localStorage.setItem('token', JSON.stringify(token)
 
 
             res.json({msg: "Login successful", refresh_token, token, access_token})
@@ -129,9 +121,7 @@ const userCtrl = {
             const user = await Users.findOne({email})
             if(!user) return res.status(500).json({msg: "This email does not exist."})
 
-            // const payload = {id: user._id, name: user.name}
 
-            // const access_token = jwt.sign(payload, process.env.TOKEN_SECRET, {expiresIn: "1d"})
             const access_token = createAccessToken({id: user._id})
             const url = `${CLIENT_URL}user/reset/${access_token}`
 

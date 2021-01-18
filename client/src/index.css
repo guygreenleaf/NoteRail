@@ -104,6 +104,12 @@
   cursor: pointer;
   transform: scale(1.1);
 }
+
+.reportLink:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  color: red;
+}
 .bigName {
   color: black;
 }
@@ -121,6 +127,13 @@
 
 .addIconLink {
   margin-top: 100px;
+}
+
+.reportBug {
+  margin-top: 200px;
+}
+.reportLink {
+  color: #282f36;
 }
 
 .welcomeCard {
@@ -191,6 +204,9 @@
   .addIcon {
     color: white;
   }
+  .reportLink {
+    color: white;
+  }
   .profName {
     font-size: 30px;
     margin-left: 0px;
@@ -244,6 +260,14 @@
     margin-top: 15px;
   }
   .addIcon {
+    color: white;
+  }
+
+  .reportBug {
+    margin-top: 35px;
+  }
+
+  .reportLink {
     color: white;
   }
 

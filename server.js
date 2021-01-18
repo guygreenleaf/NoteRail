@@ -20,11 +20,6 @@ app.use(fileUpload({
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api/notes', require('./routes/noteRouter'))
-// app.use(jwt({
-//     secret: '109jlsjevc;a:;se;flka;elfjl;oaiunm23ijkikojhnal9o838li3rltl3apl;o2;',
-//     algorithms: ['HS256'],
-//     getToken: req=>req.cookies.token
-// }))
 
 //Connect to mongoDB
 const URI =  process.env.MONGODB_URL 

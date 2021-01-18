@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -14,6 +15,8 @@ function Profile() {
   const parms = useParams();
   const parmid = useParams().id;
 
+  const [pfp, setPfp] = useState("");
+
   useEffect(() => {
     const getNote = async () => {
       const res = await axios.get(`/api/notes/public/${parmid}`, {
@@ -24,12 +27,21 @@ function Profile() {
     getNote();
   }, [parmid, token]);
 
+  useEffect(() => {
+    const getPfp = async () => {
+      const res = await axios.get(`/user/userAvatar/${parms.user_id}`, {
+        headers: { Authorization: token },
+      });
+      setPfp(res.data);
+    };
+    getPfp();
+  }, [parmid, token]);
+
   const bigNotes = [];
   let i = 0;
   for (i in notes) {
     if (notes[i].user_id === parms.user_id) bigNotes.push(notes[i]);
   }
-
   return (
     <div>
       <FadeIn transitionDuration="800">
@@ -42,14 +54,39 @@ function Profile() {
         ) : (
           <div
             style={{
+              display: "flex",
+              flexWrap: "wrap",
               height: "6vh",
               width: "18vw",
-              marginLeft: "250px",
+              marginLeft: "200px",
               marginBottom: "50px",
               marginTop: "30px",
             }}
           >
-            <h3 className="profName">{bigNotes[0].name}'s Public Notes</h3>
+            <h3 className="profName">
+              {" "}
+              <img
+                className="userImage"
+                src={pfp}
+                alt="name"
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  marginLeft: "100px",
+                  marginRight: "10px",
+                  // marginLeft: "19px",
+                  border: "2px solid black",
+                  borderRadius: "75px",
+                  boxShadow: "2px 2px grey",
+                  height: "90px",
+                  width: "90px",
+                }}
+              />
+              <p style={{ marginTop: "20px" }}>
+                {bigNotes[0].name}
+                's Public Notes
+              </p>{" "}
+            </h3>
           </div>
         )}
 

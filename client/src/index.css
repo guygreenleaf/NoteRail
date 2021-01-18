@@ -150,8 +150,9 @@
 
 .profName {
   font-size: 30px;
-  margin-left: 30px;
-  margin-top: 9px;
+  margin-left: 20px;
+  white-space: nowrap;
+  margin-top: 10px;
   font-weight: 500;
   display: flex;
   color: White;

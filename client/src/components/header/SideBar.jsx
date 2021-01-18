@@ -73,19 +73,7 @@ function SideBar() {
     <div className="SideBar">
       <div className="logo" style={{ marginTop: "25px" }}>
         <ul>{userLink()}</ul>
-        {/* <h1>
-          <Link
-            to="/notes"
-            style={{
-              color: "black",
-              fontWeight: "400",
-              letterSpacing: "4px",
-              marginLeft: " 12px",
-            }}
-          >
-            NoteRail
-          </Link>
-        </h1> */}
+      
       </div>
       <div
         className="settingsIconSidebar"

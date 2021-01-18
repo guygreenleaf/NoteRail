@@ -80,7 +80,11 @@ function UploadAvatar() {
         }
       );
 
-      setData({ ...data, err: "", success: "Updated Success!" });
+      setData({
+        ...data,
+        err: "",
+        success: "Updated Profile Picture Successfully!",
+      });
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: "" });
     }

@@ -72,7 +72,7 @@ function Profile() {
                 style={{
                   display: "flex",
                   flexWrap: "wrap",
-                  marginLeft: "100px",
+                  marginLeft: "0px",
                   marginRight: "10px",
                   // marginLeft: "19px",
                   border: "2px solid black",

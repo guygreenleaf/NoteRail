@@ -156,6 +156,7 @@
   font-weight: 500;
   display: flex;
   color: White;
+  margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 1026px) {

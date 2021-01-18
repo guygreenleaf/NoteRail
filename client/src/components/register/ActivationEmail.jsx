@@ -48,16 +48,21 @@ function ActivationEmail() {
                   style={{
                     paddingLeft: "11.250px",
                     marginTop: "20px",
-                    marginLeft: "45px",
+                    // marginLeft: "45px",
                     marginRight: "45px",
                   }}
                 >
-                  <h4>
+                  <h4
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      overflowWrap: "break-word",
+                    }}
+                  >
                     <b>Congrats!</b> Your account has been activated. You can
                     now sign in using the credentials you provided at
                     registration.
                   </h4>
-                  <p className="grey-text text-darken-1"></p>
                 </div>
 
                 <div className="col s12" style={{ paddingLeft: "2px" }}>

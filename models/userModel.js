@@ -24,6 +24,18 @@ const userSchema = new mongoose.Schema({
     avatar: {
         type: String,
         default: "https://res.cloudinary.com/noterail-com/image/upload/v1608770195/avatar/d2erjuvfr3dk0lejhpng.jpg"
+    },
+    friends: {
+        type: [String],
+        default: []
+    },
+    sentRequests: {
+        type: [String],
+        default: []
+    },
+    receivedRequests: {
+        type: [String],
+        default: []
     }
 }, {
     timestamps: true

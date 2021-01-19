@@ -19,6 +19,8 @@ router.get('/infor', auth, userCtrl.getUserInfor)
 
 router.get('/userAvatar/:id', auth, userCtrl.getUserAvatar)
 
+router.post('/addFriend/:id/:from', auth, userCtrl.addFriend)
+
 router.get('/all_infor', auth, authAdmin, userCtrl. getUsersAllInfor)
 
 router.get('/logout', userCtrl.logout)

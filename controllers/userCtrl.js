@@ -207,6 +207,22 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+
+    addFriend: async (req, res) => {
+        try {
+            const userTo = await Users.findById(req.params.id);
+            const userFrom = await Users.findById(req.params.from);
+
+            await Users.findByIdAndUpdate(req.params.from, {$push: {sentRequests: req.params.id}})
+            await Users.findByIdAndUpdate(req.params.id, {$push: {receivedRequests: req.params.from}})
+            res.json({msg: "success"})
+            // console.log(req.params.id);
+            // console.log(req.params.from);
+        } catch (err) {
+            return res.status(500).json({img: err.message})
+        }
+    },
+
     deleteUser: async (req, res) => {
         try {
             await Users.findByIdAndDelete(req.params.id)

@@ -18,6 +18,7 @@ import CreateNote from "./components/notes/CreateNote";
 import NotesRules from "./components/notes/NotesRules";
 import UploadAvatar from "./components/notes/UploadAvatar";
 import ReportBug from "./components/ReportBug";
+import RegisterSuccess from "./components/register/RegisterSuccess";
 import { useSelector } from "react-redux";
 import {
   dispatchLogin,
@@ -108,6 +109,7 @@ function App() {
             path="/uploadProfile"
             component={isLogged ? UploadAvatar : Landing}
           />
+          <Route path="/registerSuccess" component={RegisterSuccess} />
           {/* <Route path="/reportBug" component={ReportBug} exact /> */}
 
           {/* <Route path="/usersNotes" component={isLogged ? Profile : Landing} /> */}

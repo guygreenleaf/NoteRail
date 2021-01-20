@@ -73,7 +73,6 @@ function SideBar() {
     <div className="SideBar">
       <div className="logo" style={{ marginTop: "25px" }}>
         <ul>{userLink()}</ul>
-      
       </div>
       <div
         className="settingsIconSidebar"

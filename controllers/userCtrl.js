@@ -215,9 +215,7 @@ const userCtrl = {
 
             await Users.findByIdAndUpdate(req.params.from, {$push: {sentRequests: req.params.id}})
             await Users.findByIdAndUpdate(req.params.id, {$push: {receivedRequests: req.params.from}})
-            res.json({msg: "success"})
-            // console.log(req.params.id);
-            // console.log(req.params.from);
+            // res.json({msg: "success"})
         } catch (err) {
             return res.status(500).json({img: err.message})
         }

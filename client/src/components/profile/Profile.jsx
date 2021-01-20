@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
@@ -8,6 +8,7 @@ import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import SideBar from "../header/SideBar";
 import FadeIn from "react-fade-in";
 import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 const formatter = buildFormatter(englishStrings);
 function Profile() {
   const [notes, setNotes] = useState([]);
@@ -84,7 +85,18 @@ function Profile() {
               />
               <p style={{ marginTop: "20px" }}>
                 {bigNotes[0].name}
-                's Public Notes
+                's Public Notes{" "}
+                <Link>
+                  <PersonAddIcon
+                    style={{
+                      color: "white",
+                      height: "40px",
+                      width: "40px",
+                      marginLeft: "10px",
+                      marginBottom: "10px",
+                    }}
+                  ></PersonAddIcon>
+                </Link>
               </p>{" "}
             </h3>
           </div>

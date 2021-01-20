@@ -36,7 +36,7 @@ function Profile() {
       setPfp(res.data);
     };
     getPfp();
-  }, [parmid, token]);
+  }, [parmid, token, parms.user_id]);
 
   const bigNotes = [];
   let i = 0;
@@ -86,7 +86,7 @@ function Profile() {
               <p style={{ marginTop: "20px" }}>
                 {bigNotes[0].name}
                 's Public Notes{" "}
-                <Link>
+                {/* <Link>
                   <PersonAddIcon
                     style={{
                       color: "white",
@@ -96,7 +96,7 @@ function Profile() {
                       marginBottom: "10px",
                     }}
                   ></PersonAddIcon>
-                </Link>
+                </Link> */}
               </p>{" "}
             </h3>
           </div>

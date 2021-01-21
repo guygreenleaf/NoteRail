@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendMail = require('./sendMail')
 
-
-const {CLIENT_URL} = process.env
+// Used for testing:
+// const {CLIENT_URL} = process.env
 const userCtrl = {
     register: async (req, res) => {
         try{
@@ -40,7 +40,7 @@ const userCtrl = {
             }
 
            const activation_token = createActivationToken(newUser)
-           const url = `${CLIENT_URL}user/activate/${activation_token}`
+           const url = `https://note-rail.com/user/activate/${activation_token}`
            sendMail(email, url, "Verify your email address")
             
             console.log("Registration successful!")
@@ -123,7 +123,7 @@ const userCtrl = {
 
 
             const access_token = createAccessToken({id: user._id})
-            const url = `${CLIENT_URL}user/reset/${access_token}`
+            const url = `https://note-rail.com/user/reset/${access_token}`
 
             sendMail(email, url, "Reset password")
             res.json({msg:"Instructions to access your acount have been sent - please check your email."})

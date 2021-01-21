@@ -34,7 +34,7 @@ function Register() {
         // setErr(res.data.msg);
         window.location.href = "/registerSuccess";
       } catch (err) {
-        err.response.data.msg && setErr(err.response.data.msg);
+        console.log(err.response.data.msg) && setErr(err.response.data.msg);
       }
     }
   };
@@ -68,7 +68,7 @@ function Register() {
                 <p className="grey-text text-darken-1">
                   Already have an account? <Link to="/">Log in</Link>
                 </p>
-                <h4 style={{ color: "blue", fontSize: "40px" }}>{err}</h4>
+                <h4 style={{ color: "red", fontSize: "40px" }}>{err}</h4>
               </div>
               <form noValidate onSubmit={registerSubmit}>
                 <div className="input-field col s12">

@@ -110,7 +110,7 @@ function App() {
             component={isLogged ? UploadAvatar : Landing}
           />
           <Route path="/registerSuccess" component={RegisterSuccess} />
-          {/* <Route path="/reportBug" component={ReportBug} exact /> */}
+          <Route path="/reportBug" component={ReportBug} exact />
 
           {/* <Route path="/usersNotes" component={isLogged ? Profile : Landing} /> */}
           <Route path="/:id" component={isLogged ? EditNote : Landing} exact />

@@ -31,7 +31,7 @@ function Register() {
           password: user.password,
         });
         setUser({ name: "", email: "", password: "", password2: "" });
-        setErr(res.data.msg);
+        // setErr(res.data.msg);
         window.location.href = "/registerSuccess";
       } catch (err) {
         err.response.data.msg && setErr(err.response.data.msg);

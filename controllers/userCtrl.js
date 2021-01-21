@@ -40,7 +40,7 @@ const userCtrl = {
             }
 
            const activation_token = createActivationToken(newUser)
-           const url = `https://note-rail.com/user/activate/${activation_token}`
+           const url = `https://www.note-rail.com/user/activate/${activation_token}`
            sendMail(email, url, "Verify your email address")
             
             console.log("Registration successful!")
@@ -123,7 +123,7 @@ const userCtrl = {
 
 
             const access_token = createAccessToken({id: user._id})
-            const url = `https://note-rail.com/user/reset/${access_token}`
+            const url = `https://www.note-rail.com/user/reset/${access_token}`
 
             sendMail(email, url, "Reset password")
             res.json({msg:"Instructions to access your acount have been sent - please check your email."})

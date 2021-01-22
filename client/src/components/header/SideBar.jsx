@@ -180,7 +180,7 @@ function SideBar() {
         </Link>
       </div>
 
-      {/* <div
+      <div
         className="reportBug"
         style={{
           display: "flex",
@@ -192,7 +192,7 @@ function SideBar() {
         <Link to="/reportBug" className="reportLink">
           <ReportIcon style={{ height: "35px", width: "35px" }}></ReportIcon>
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 }

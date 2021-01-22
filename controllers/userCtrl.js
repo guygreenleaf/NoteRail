@@ -74,7 +74,9 @@ const userCtrl = {
     },
     login: async(req, res) => {
         try {
-            const {email, password} = req.body
+
+            let {email, password} = req.body
+            email = email.toLowerCase();
             const user = await Users.findOne({email})
             if(!user) return res.status(400).json({msg: "This email does not exist."})
 
@@ -93,6 +95,8 @@ const userCtrl = {
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7 days
             })
+
+            console.log(email);
 
 
             res.json({msg: "Login successful", refresh_token, token, access_token})

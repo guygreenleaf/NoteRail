@@ -150,7 +150,6 @@ function Profile() {
                     position: "relative",
                     color: "black",
                     margin: "15px",
-                    // cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     overflow: "hidden",

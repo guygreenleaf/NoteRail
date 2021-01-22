@@ -179,7 +179,7 @@ function SideBar() {
           ></AddToPhotosIcon>
         </Link>
       </div>
-      {/* 
+
       <div
         className="reportBug"
         style={{
@@ -192,7 +192,7 @@ function SideBar() {
         <Link to="/reportBug" className="reportLink">
           <ReportIcon style={{ height: "35px", width: "35px" }}></ReportIcon>
         </Link>
-      </div> */}
+      </div>
     </div>
   );
 }

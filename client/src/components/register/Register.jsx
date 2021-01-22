@@ -34,7 +34,7 @@ function Register() {
         // setErr(res.data.msg);
         window.location.href = "/registerSuccess";
       } catch (err) {
-        err.response.data.msg && setErr(err.response.data.msg);
+        setErr(err.response.data.msg);
       }
     }
   };

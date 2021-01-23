@@ -1,3 +1,4 @@
-# Current Version: 1.0.0 
+# V1.1.0
 
-For most recent changes, please see the V1.0.0 branch.
+Release Date: 1/16/2021
+

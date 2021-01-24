@@ -46,7 +46,6 @@ function SideBar() {
             display: "block",
             marginLeft: "auto",
             marginRight: "auto",
-            // marginLeft: "19px",
             border: "2px solid black",
             borderRadius: "75px",
             boxShadow: "2px 2px grey",
@@ -79,15 +78,8 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          // marginLeft: "100px",
-          // marginRight: "100px",
         }}
       >
-        {/* <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        > */}
         <SettingsIcon
           style={{
             height: "30px",
@@ -97,8 +89,6 @@ function SideBar() {
           className="setIcon"
           onClick={handleClick}
         />
-        {/* </Button> */}
-
         <Menu
           id="simple-menu"
           anchorEl={anchorEl}
@@ -110,6 +100,9 @@ function SideBar() {
             <MenuItem>Upload Avatar</MenuItem>
           </Link>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          <Link to="/reportBug" className="reportLink">
+            <MenuItem>Report Bug</MenuItem>
+          </Link>
         </Menu>
       </div>
       <div
@@ -117,8 +110,6 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          // marginLeft: "100px",
-          // marginRight: "100px",
         }}
       >
         <HomeIcon
@@ -135,16 +126,8 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          // marginLeft: "100px",
-          // marginRight: "100px",
         }}
       >
-        {/* <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        > */}
-
         <PublicRoundedIcon
           style={{
             height: "40px",
@@ -159,15 +142,8 @@ function SideBar() {
         style={{
           display: "flex",
           justifyContent: "center",
-          // marginLeft: "100px",
-          // marginRight: "100px",
         }}
       >
-        {/* <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        > */}
         <Link to="/create" className="addIconLink">
           <AddToPhotosIcon
             style={{
@@ -177,23 +153,6 @@ function SideBar() {
             className="addIcon"
             onClick={(event) => (window.location.href = "/create")}
           ></AddToPhotosIcon>
-        </Link>
-      </div>
-
-      <div
-        className="reportBug"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          // marginLeft: "100px",
-          // marginRight: "100px",
-        }}
-      >
-        <Link to="/reportBug" className="reportLink">
-          <ReportIcon
-            className="reportIcon"
-            style={{ height: "35px", width: "35px" }}
-          ></ReportIcon>
         </Link>
       </div>
     </div>

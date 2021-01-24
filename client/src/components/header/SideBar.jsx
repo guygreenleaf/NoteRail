@@ -100,7 +100,7 @@ function SideBar() {
             <MenuItem>Upload Avatar</MenuItem>
           </Link>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          <Link to="/reportBug" className="reportLink">
+          <Link to="/reportBug" style={{ color: "black" }}>
             <MenuItem>Report Bug</MenuItem>
           </Link>
         </Menu>

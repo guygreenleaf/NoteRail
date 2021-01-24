@@ -24,8 +24,6 @@ function Landing() {
     setErr("");
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -111,7 +109,7 @@ function Landing() {
                   >
                     Login
                   </button>
-                  <div>
+                  <div style={{ marginLeft: "7px" }}>
                     <p className="font-small grey-text">
                       Forgot your password?
                       <Link to="/forgotPassword" className="font-small ml-1">

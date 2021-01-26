@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -9,6 +8,7 @@ import SideBar from "../header/SideBar";
 import FadeIn from "react-fade-in";
 import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+
 const formatter = buildFormatter(englishStrings);
 function Profile() {
   const [notes, setNotes] = useState([]);
@@ -16,7 +16,70 @@ function Profile() {
   const parms = useParams();
   const parmid = useParams().id;
 
+  const [User, setUser] = useState();
+
+  //Friendship states, initially set false
+  const [isFriend, setFriend] = useState(false);
+  const [isRequested, requestFriend] = useState(false);
+  const [hasRequestFrom, requestFrom] = useState(false);
+
   const [pfp, setPfp] = useState("");
+  const user = parms.loggedIn;
+
+  useEffect(() => {
+    const logUser = async () => {
+      const res = await axios.get(`/user/getUserFriends/${user}`, {
+        headers: { Authorization: token },
+      });
+
+      setUser(res.data);
+    };
+    logUser();
+  }, []);
+
+  console.log(User);
+
+  let frnds = [];
+  let recdReqs = [];
+  let sentReqs = [];
+
+  frnds.push(User);
+
+  //Check for initial friend state
+  // useEffect(() => {
+  //   for (let i = 0; i < User.length; i++) {
+  //     if (User.friends[i] === parms.user_id) {
+  //       setFriend(true);
+  //       console.log("friendship found");
+  //     }
+  //   }
+
+  //   // console.log(User.friends);
+  // }, []);
+
+  //Check if we've already sent a request
+  // useEffect(() => {
+  //   let requests = User.sentRequests;
+  //   for (let i = 0; i < requests.length; i++) {
+  //     if (user.friends[i] === parms.user_id) {
+  //       requestFriend(true);
+  //       console.log("friend request already sent..");
+  //     }
+  //     console.log("Friend Request has not been sent..");
+  //   }
+  // }, [user, parms]);
+
+  //Check if the user has already received a request
+  // useEffect(() => {
+  //   let reqs = user.receivedRequests;
+  //   for (let i = 0; i < reqs.length; i++) {
+  //     if (user.sentRequests[i] === parms.user_id) {
+  //       requestFrom(true);
+  //       console.log("User has already sent a request...");
+  //     }
+  //     console.log("No request exists....");
+  //   }
+  // }, [user, parms]);
 
   useEffect(() => {
     const getNote = async () => {
@@ -43,6 +106,9 @@ function Profile() {
   for (i in notes) {
     if (notes[i].user_id === parms.user_id) bigNotes.push(notes[i]);
   }
+
+  // logUser();
+  // console.log(User.friends);
   return (
     <div>
       <FadeIn transitionDuration="800">
@@ -86,7 +152,7 @@ function Profile() {
               <p style={{ marginTop: "20px" }}>
                 {bigNotes[0].name}
                 's Public Notes{" "}
-                {/* <Link>
+                {!isFriend ? (
                   <PersonAddIcon
                     style={{
                       color: "white",
@@ -96,7 +162,9 @@ function Profile() {
                       marginBottom: "10px",
                     }}
                   ></PersonAddIcon>
-                </Link> */}
+                ) : (
+                  "Testing!"
+                )}
               </p>{" "}
             </h3>
           </div>

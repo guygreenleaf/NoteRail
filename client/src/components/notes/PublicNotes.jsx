@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -10,7 +11,9 @@ import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 const formatter = buildFormatter(englishStrings);
 function PublicNotes() {
   const [notes, setNotes] = useState([]);
-
+  const auth = useSelector((state) => state.auth);
+  const { user } = auth;
+  const usersID = user._id;
   const getNotes = async (token) => {
     const res = await axios.get("api/notes/public", {
       headers: { Authorization: token },
@@ -34,7 +37,7 @@ function PublicNotes() {
     }
   }
 
-  console.log(pubiNotes);
+  // console.log(pubiNotes);
 
   return (
     <div>
@@ -146,7 +149,7 @@ function PublicNotes() {
                     }}
                   >
                     <Link
-                      to={`/userNotes/${note.user_id}`}
+                      to={`/userNotes/${usersID}/${note.user_id}`}
                       style={{ color: "Black" }}
                     >
                       {note.name}

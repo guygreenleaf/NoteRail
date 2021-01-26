@@ -179,6 +179,15 @@ const userCtrl = {
         }
 
     },
+    getUserFriends: async(req, res) =>{
+        try {
+            const user = await Users.findById(req.params.id)
+
+            res.json(user.friends);
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    },
     logout: async (req, res) => {
         try {
             res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
@@ -211,6 +220,9 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    // getReceivedRequests: async (req, res) =>{
+    //     await Users.find
+    // }
 
     addFriend: async (req, res) => {
         try {

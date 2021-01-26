@@ -94,7 +94,7 @@ function App() {
             exact
           />
           <Route
-            path="/userNotes/:user_id"
+            path="/userNotes/:loggedIn/:user_id"
             component={isLogged ? Profile : Landing}
             exact
           />

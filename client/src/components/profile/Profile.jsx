@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -21,6 +20,7 @@ function Profile() {
   const [sentRequests, setRequests] = useState();
   const [receivedRequests, receiveRequest] = useState();
   //Friendship states, initially set false
+  //Set to true to set proper icon later on in component
   const [isFriend, setFriend] = useState(false);
   const [isRequested, requestFriend] = useState(false);
   const [hasRequestFrom, requestFrom] = useState(false);

@@ -8,7 +8,6 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import PublicRoundedIcon from "@material-ui/icons/PublicRounded";
 import HomeIcon from "@material-ui/icons/Home";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
-import ReportIcon from "@material-ui/icons/Report";
 function SideBar() {
   const auth = useSelector((state) => state.auth);
 

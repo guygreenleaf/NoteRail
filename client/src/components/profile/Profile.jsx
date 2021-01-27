@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import TimeAgo from "react-timeago";
 import englishStrings from "react-timeago/lib/language-strings/en";
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
@@ -16,8 +17,9 @@ function Profile() {
   const parms = useParams();
   const parmid = useParams().id;
 
-  const [User, setUser] = useState();
-
+  const [UserFriends, setUser] = useState();
+  const [sentRequests, setRequests] = useState();
+  const [receivedRequests, receiveRequest] = useState();
   //Friendship states, initially set false
   const [isFriend, setFriend] = useState(false);
   const [isRequested, requestFriend] = useState(false);
@@ -26,6 +28,7 @@ function Profile() {
   const [pfp, setPfp] = useState("");
   const user = parms.loggedIn;
 
+  //Get user friends list and user set/received request list
   useEffect(() => {
     const logUser = async () => {
       const res = await axios.get(`/user/getUserFriends/${user}`, {
@@ -34,53 +37,67 @@ function Profile() {
 
       setUser(res.data);
     };
+
+    const getReqs = async () => {
+      const res = await axios.get(`/user/getUserRequests/${user}`, {
+        headers: { Authorization: token },
+      });
+      setRequests(res.data);
+    };
+
+    const getReceived = async () => {
+      const res = await axios.get(`/user/getUserReceivedRequests/${user}`, {
+        headers: { Authorization: token },
+      });
+      receiveRequest(res.data);
+    };
+
     logUser();
-  }, []);
+    getReqs();
+    getReceived();
+  }, [token, user]);
 
-  console.log(User);
-
-  let frnds = [];
-  let recdReqs = [];
-  let sentReqs = [];
-
-  frnds.push(User);
-
-  //Check for initial friend state
-  // useEffect(() => {
-  //   for (let i = 0; i < User.length; i++) {
-  //     if (User.friends[i] === parms.user_id) {
-  //       setFriend(true);
-  //       console.log("friendship found");
-  //     }
-  //   }
-
-  //   // console.log(User.friends);
-  // }, []);
+  // Check for initial friend state
+  useEffect(() => {
+    if (UserFriends !== undefined) {
+      for (let i = 0; i < UserFriends.length; i++) {
+        if (UserFriends[i] === parms.user_id) {
+          setFriend(true);
+          console.log("friendship found");
+        }
+      }
+    }
+  }, [UserFriends, parms.user_id]);
 
   //Check if we've already sent a request
-  // useEffect(() => {
-  //   let requests = User.sentRequests;
-  //   for (let i = 0; i < requests.length; i++) {
-  //     if (user.friends[i] === parms.user_id) {
-  //       requestFriend(true);
-  //       console.log("friend request already sent..");
-  //     }
-  //     console.log("Friend Request has not been sent..");
-  //   }
-  // }, [user, parms]);
+  useEffect(() => {
+    if (sentRequests !== undefined) {
+      for (let i = 0; i < sentRequests.length; i++) {
+        if (sentRequests[i] === parms.user_id) {
+          requestFriend(true);
+          console.log("friend request already sent..");
+        } else {
+          console.log("Friend Request has not been sent..");
+        }
+      }
+    }
+  }, [sentRequests, parms]);
 
   //Check if the user has already received a request
-  // useEffect(() => {
-  //   let reqs = user.receivedRequests;
-  //   for (let i = 0; i < reqs.length; i++) {
-  //     if (user.sentRequests[i] === parms.user_id) {
-  //       requestFrom(true);
-  //       console.log("User has already sent a request...");
-  //     }
-  //     console.log("No request exists....");
-  //   }
-  // }, [user, parms]);
+  useEffect(() => {
+    if (receivedRequests !== undefined) {
+      for (let i = 0; i < receivedRequests.length; i++) {
+        if (receivedRequests[i] === parms.user_id) {
+          requestFrom(true);
+          console.log("friend request already received..");
+        } else {
+          console.log("Friend Request has not been received..");
+        }
+      }
+    }
+  }, [receivedRequests, parms]);
 
+  //Get public notes
   useEffect(() => {
     const getNote = async () => {
       const res = await axios.get(`/api/notes/public/${parmid}`, {
@@ -91,6 +108,7 @@ function Profile() {
     getNote();
   }, [parmid, token]);
 
+  //Get profile picture
   useEffect(() => {
     const getPfp = async () => {
       const res = await axios.get(`/user/userAvatar/${parms.user_id}`, {
@@ -101,6 +119,7 @@ function Profile() {
     getPfp();
   }, [parmid, token, parms.user_id]);
 
+  //Hold notes in this
   const bigNotes = [];
   let i = 0;
   for (i in notes) {

@@ -188,6 +188,25 @@ const userCtrl = {
             return res.status(500).json({msg:err.message})
         }
     },
+    getUserRequests: async(req, res) =>{
+        try {
+            const user = await Users.findById(req.params.id)
+
+            res.json(user.sentRequests);
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    },
+    getUserReceivedRequests: async(req, res)=>{
+        try {
+            const user = await Users.findById(req.params.id)
+
+            res.json(user.receivedRequests);
+        } catch (err) {
+            return res.status(500).json({msg:err.message})
+        }
+    },
+
     logout: async (req, res) => {
         try {
             res.clearCookie('refreshtoken', {path: '/user/refresh_token'})

@@ -25,6 +25,10 @@ router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor)
 
 router.get('/getUserFriends/:id', auth, userCtrl.getUserFriends)
 
+router.get('/getUserRequests/:id', auth, userCtrl.getUserRequests)
+
+router.get('/getUserReceivedRequests/:id', auth, userCtrl.getUserReceivedRequests)
+
 router.get('/logout', userCtrl.logout)
 
 router.patch('/update', auth, userCtrl.updateUser)

@@ -8,6 +8,9 @@ import SideBar from "../header/SideBar";
 import FadeIn from "react-fade-in";
 import { MDBCard, MDBCardBody, MDBBox } from "mdbreact";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import HowToRegIcon from "@material-ui/icons/HowToReg";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 
 const formatter = buildFormatter(englishStrings);
 function Profile() {
@@ -65,6 +68,7 @@ function Profile() {
           setFriend(true);
           console.log("friendship found");
         }
+        console.log("Friend not found");
       }
     }
   }, [UserFriends, parms.user_id]);
@@ -76,8 +80,6 @@ function Profile() {
         if (sentRequests[i] === parms.user_id) {
           requestFriend(true);
           console.log("friend request already sent..");
-        } else {
-          console.log("Friend Request has not been sent..");
         }
       }
     }
@@ -90,8 +92,6 @@ function Profile() {
         if (receivedRequests[i] === parms.user_id) {
           requestFrom(true);
           console.log("friend request already received..");
-        } else {
-          console.log("Friend Request has not been received..");
         }
       }
     }
@@ -172,7 +172,39 @@ function Profile() {
                 {bigNotes[0].name}
                 's Public Notes{" "}
                 {!isFriend ? (
-                  <PersonAddIcon
+                  isRequested ? (
+                    <HowToRegIcon
+                      style={{
+                        color: "white",
+                        height: "40px",
+                        width: "40px",
+                        marginLeft: "10px",
+                        marginBottom: "10px",
+                      }}
+                    ></HowToRegIcon>
+                  ) : hasRequestFrom ? (
+                    <ContactMailIcon
+                      style={{
+                        color: "white",
+                        height: "40px",
+                        width: "40px",
+                        marginLeft: "10px",
+                        marginBottom: "10px",
+                      }}
+                    ></ContactMailIcon>
+                  ) : (
+                    <PersonAddIcon
+                      style={{
+                        color: "white",
+                        height: "40px",
+                        width: "40px",
+                        marginLeft: "10px",
+                        marginBottom: "10px",
+                      }}
+                    ></PersonAddIcon>
+                  )
+                ) : (
+                  <PeopleAltIcon
                     style={{
                       color: "white",
                       height: "40px",
@@ -180,9 +212,7 @@ function Profile() {
                       marginLeft: "10px",
                       marginBottom: "10px",
                     }}
-                  ></PersonAddIcon>
-                ) : (
-                  "Testing!"
+                  ></PeopleAltIcon>
                 )}
               </p>{" "}
             </h3>
